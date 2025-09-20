@@ -1,0 +1,4 @@
+.body-container{
+    display: flex;
+    background-color: var(--cor-div-maior);
+}
