@@ -1,0 +1,17 @@
+*{
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.html, body, #root{
+
+  min-height: 100vh;
+
+}  
+:root{
+  --cor-navbar: #243a69;
+  --cor-div-maior: #D9D9D9;
+  --cor-detalhes: #5B88A5;
+  
+}

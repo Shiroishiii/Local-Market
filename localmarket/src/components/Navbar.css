@@ -1,0 +1,36 @@
+.navbar-container{
+    background-color: var(--cor-navbar);
+    height: 180px;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+.icon-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 48px;
+}
+.icon-especial{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 100px;
+
+}
+.span-market{
+    color: var(--cor-detalhes);
+}
+.input-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 270px; 
+    min-height: 25px;
+}
