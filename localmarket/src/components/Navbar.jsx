@@ -5,10 +5,10 @@ import { GlobalContext } from '../contexts/GlobalContext'
 
 
 function Navbar() {
-  const{isSidebarOpen, setIsSidebarOpen} = useContext(GlobalContext)
-    const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
-  }
+  const{isSidebarOpen, setIsSidebarOpen, toggleSidebar} = useContext(GlobalContext)
+  //   const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen)
+  // }
   return (
     <div className='navbar-container'>
       <div className='navbar-left'>
