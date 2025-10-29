@@ -3,10 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar'
-import Body from './components/Body'
+// import Body from './pages/Body'
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
@@ -16,7 +16,7 @@ function App() {
     <>
       <div>
         <Navbar onToggleFilters={toggleSidebar} />
-        <Body isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
+        {/* <Body isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} /> */}
       </div>
 
     </>

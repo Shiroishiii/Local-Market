@@ -1,9 +1,13 @@
-import React, { useState, useMemo } from 'react'
+import  { useState, useMemo, useContext } from 'react'
 import './Body.css'
-import ProductCard from './ProductCard'
-import FilterBar from './FilterBar'
+import ProductCard from '../components/ProductCard'
+import FilterBar from '../components/FilterBar'
+import Navbar from '../components/Navbar'
+import { GlobalContext } from '../contexts/GlobalContext'
 
-function Body({ isSidebarOpen, onToggleSidebar }) {
+function Body() {
+    const{isSidebarOpen, setIsSidebarOpen} = useContext(GlobalContext)
+
   const [filters, setFilters] = useState({
     category: 'all',
     price: 'all',
@@ -212,7 +216,9 @@ function Body({ isSidebarOpen, onToggleSidebar }) {
 
 
   return (
+    
     <div className='body-container'>
+      <Navbar />
       <FilterBar 
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
