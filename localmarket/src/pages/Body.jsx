@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 import { GlobalContext } from '../contexts/GlobalContext'
 
 function Body() {
-    const{isSidebarOpen, setIsSidebarOpen} = useContext(GlobalContext)
+    const{isSidebarOpen, setIsSidebarOpen,toggleSidebar } = useContext(GlobalContext)
 
   const [filters, setFilters] = useState({
     category: 'all',
@@ -223,7 +223,7 @@ function Body() {
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
         isExpanded={isSidebarOpen}
-        onToggle={onToggleSidebar}
+        onToggle={toggleSidebar}
       />
       <div className='products-grid'>
         {filteredProducts.length > 0 ? (

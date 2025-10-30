@@ -5,14 +5,15 @@
     color: white;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
+    padding: 2 40px;
+    border: 10px solid transparent;
 }
 /* Seções da navbar */
 .navbar-left {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .navbar-center {
@@ -29,6 +30,12 @@
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.logoNav{
+    width: 57px;
+    border-radius: 10px;
+    background-color: rgba(39, 42, 115, 0.255);
 }
 
 .search-icon {

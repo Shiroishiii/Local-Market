@@ -12,7 +12,8 @@ function Navbar() {
   return (
     <div className='navbar-container'>
       <div className='navbar-left'>
-        <h1>LOCAL<span className='span-market'>MARKET</span></h1>
+        <img className='logoNav' src="./img/LogoAtu.svg" alt="" />
+        {/* <h1>LOCAL<span className='span-market'>MARKET</span></h1> */}
         <div className='location-section'>
           <img className='icon-local' src="./img/local.svg" alt="Localização" />
           <span className='cep-text'>Informe seu CEP</span>

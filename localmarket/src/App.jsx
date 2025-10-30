@@ -6,11 +6,9 @@ import Navbar from './components/Navbar'
 // import Body from './pages/Body'
 
 function App() {
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
-  }
+  
 
   return (
     <>

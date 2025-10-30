@@ -16,14 +16,12 @@ function ProductCard({ product }) {
   return (
     <div className='product-card'>
       <div className='product-image-container'>
-        <img 
-          src={image || './img/produto.png'} 
+        {/* <img 
+          src={image || './img/LogoAtu.svg'} 
           alt={name}
           className='product-image'
-        />
-        <div className='product-badge'>
-          <span className='rating'><img src="./img/star.svg" alt="Avaliação" />  {rating || '4.5'}</span>
-        </div>
+        /> */}
+        <img className='card-img' src="./img/produto.png" alt="Avaliação" />  {rating || '4.5'}
       </div>
       
       <div className='product-info'>
