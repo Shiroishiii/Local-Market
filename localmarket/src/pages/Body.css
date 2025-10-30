@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: var(--cor-cinza-claro);
     min-height: calc(100vh - 70px);
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .products-grid {
