@@ -6,13 +6,8 @@ import Navbar from '../components/Navbar'
 import { GlobalContext } from '../contexts/GlobalContext'
 
 function Body() {
-<<<<<<< HEAD
     const{isSidebarOpen, setIsSidebarOpen,toggleSidebar } = useContext(GlobalContext)
 
-=======
-    const{isSidebarOpen, setIsSidebarOpen, toggleSidebar} = useContext(GlobalContext)
-    
->>>>>>> cf90aa0d34f75cbc5df7b3c4103fbaa96daefe33
   const [filters, setFilters] = useState({
     category: 'all',
     price: 'all',
