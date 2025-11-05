@@ -3,6 +3,7 @@ import './Navbar.css'
 import React, { useContext } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 import { Link } from 'react-router-dom'
+import InfoCep from './InfoCep'
 
 
 function Navbar() {
@@ -10,6 +11,8 @@ function Navbar() {
   //   const toggleSidebar = () => {
   //   setIsSidebarOpen(!isSidebarOpen)
   // }
+
+  const {cepCepado,setCepCepado} = useContext(GlobalContext)
   return (
   
       
@@ -29,7 +32,7 @@ function Navbar() {
         {/* <h1>LOCAL<span className='span-market'>MARKET</span></h1> */}
         <div className='location-section'>
           <img className='icon-local' src="./img/local.svg" alt="Localização" />
-          <span className='cep-text'>Informe seu CEP</span>
+          <InfoCep />
         </div>
       </div>
       
