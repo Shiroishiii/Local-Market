@@ -11,7 +11,7 @@ function Login() {
             <p className="title">Fazer Login</p>
             <form className="form">
               <input type="text" className="input" placeholder="Nome de usuário"/>
-              <input type="password" className="input" placeholder="Password"/>
+              <input type="password" className="input" placeholder="Senha"/>
               <p className="page-link">
                 <span className="page-link-label">Esqueceu a senha?</span>
               </p>
