@@ -1,48 +1,164 @@
-.perfil-container{
+.perfil-container {
     display: flex;
     background-color: var(--cor-cinza-claro);
-    align-items: center ;
-    
-
+    align-items: center;
+    min-height: 100vh;
 }
-.left-options{
+
+.sidebar-container {
     display: flex;
-    padding: 15px 10px;
+    padding: 30px 20px;
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--cor-azul-marinho);
-    min-height: 800px;
+    min-height: 100vh;
     min-width: 300px;
-    color: white;
 }
-.options{
-    margin-left: 10px;
+
+.sidebar-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
 }
-.subtitulo{
-    margin-top: 10px;
-    margin-left: 10px;
-}
-.info-perfil{
+
+
+.info-perfil {
     display: flex;
     justify-content: center center;
-    border: 5px solid;
+    border: 2px solid;
+    border-color: var(--cor-azul-marinho);
     border-radius: 100%;
     height: 270px;
     width: 270px;
     background-color: var(--cor-branco);
     ;
-    
+
 }
-.info{
+
+.info {
     display: flex;
     flex-direction: column;
-    
 }
-.central{
+
+.central {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
     height: 100%;
     width: 100%;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    margin: 20px;
+}
+
+.title-highlight {
+    color: var(--cor-azul-pastel);
+}
+
+.button-sidebar {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.button-sidebar p {
+    margin: 0;
+    position: relative;
+    font-size: 20px;
+    color: white;
+}
+
+.button-sidebar::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: white;
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+.button-sidebar:hover::after {
+    width: 100%;
+}
+
+.button-logout {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.button-logout p {
+    margin: 0;
+    position: relative;
+    font-size: 20px;
+    color: white;
+}
+
+.button-logout::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: #c90000;
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+.button-logout p::before {
+    position: absolute;
+    content: "Sair";
+    width: 0%;
+    inset: 0;
+    color: red;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.button-logout:hover::after {
+    width: 100%;
+}
+
+.button-logout:hover p::before {
+    width: 100%;
+}
+
+.button-edit{
+    display: block;
+    margin-left: 200px;
+    padding: 2px;
+    background-color: var(--cor-azul-marinho);
+    cursor: pointer;
+    border: none;
+    border-radius: 100%;
+}
+
+.button-edit:hover{
+    background-color: var(--cor-azul-pastel);
+    scale: 1.1;
 }
