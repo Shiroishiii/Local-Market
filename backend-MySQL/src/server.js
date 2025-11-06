@@ -139,20 +139,20 @@ app.post('/item', async (req, res) => {
 
 app.put('/item/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, endereco, email, telefone } = req.body;
+    const { descricao, preco_diaria, status, rua, bairro, estado, cep, telefone } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE usuario SET nome = ?, endereco = ?, email = ?, telefone = ? WHERE id = ?',
-            [nome, endereco, email, telefone, id]
+            'UPDATE item SET descricao = ?, preco_diaria = ?, status = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id = ?',
+            [descricao, preco_diaria, status, rua, bairro, estado, cep, telefone, id]
         );
         if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Cliente não encontrado' });
+            return res.status(404).json({ error: 'Item não encontrado' });
         }
-        const [clienteAtualizado] = await pool.query('SELECT * FROM usuario WHERE id = ?', [id]);
-        res.json(clienteAtualizado[0]);
+        const [itemAtualizado] = await pool.query('SELECT * FROM item WHERE id = ?', [id]);
+        res.json(itemAtualizado[0]);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: 'Erro ao atualizar usuario' });
+        res.status(500).json({ error: 'Erro ao atualizar item' });
     }
 });
 
