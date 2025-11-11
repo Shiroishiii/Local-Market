@@ -10,10 +10,10 @@ function FilterBar({ onFilterChange, onSearchChange, isExpanded, onToggle }) {
   const categories = [
     { value: 'all', label: 'Todas' },
     { value: 'ferramentas', label: 'Ferramentas' },
-    { value: 'eletrodomesticos', label: 'Eletrodomésticos' },
-    { value: 'lazer', label: 'Lazer' },
-    { value: 'eventos', label: 'Eventos' },
-    { value: 'profissional', label: 'Profissional' }
+    { value: 'maquinas', label: 'Maquinas' },
+    { value: 'vestimentas', label: 'Vestimentas' },
+    { value: 'espaço kids', label: 'Espaço kids' },
+    { value: 'salão de festa', label: 'Salão de festa' }
   ]
 
   const priceRanges = [
