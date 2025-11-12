@@ -15,7 +15,7 @@ function Login() {
               <p className="page-link">
                 <span className="page-link-label">Esqueceu a senha?</span>
               </p>
-              <button className="form-btn">Cadastrar-se</button>
+              <button className="form-btn">Login</button>
             </form>
             <p className="sign-up-label">
               Não tem uma conta?<span className="sign-up-link">Cadastre-se</span>
