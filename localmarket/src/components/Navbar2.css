@@ -1,4 +1,4 @@
-.Navbar-container{
+.Navbar-container-2{
     background-color: var(--cor-azul-marinho);
     height: 70px;
     display: flex;
@@ -9,26 +9,26 @@
     border: 10px solid transparent;
 }
 
-.logoNav{
+.logoNav-2{
     width: 57px;
     border-radius: 10px;
     background-color: rgba(39, 42, 115, 0.255);
 }
 
-.navbar-center {
+.navbar-center-2 {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 12px;
 }
 
-.navbar-left {
+.navbar-left-2 {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.navbar-right{
+.navbar-right-2{
     display: flex;
     gap: 20px;
     align-items: center;

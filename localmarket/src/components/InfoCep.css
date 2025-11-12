@@ -1,10 +1,91 @@
-.fundo{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    backdrop-filter: blur(2px);
+/* Botão da navbar */
+.btn-cep {
+
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-cep:hover {
+  text-decoration: underline;
+}
+
+/* Fundo escurecido do modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Caixinha do modal */
+.modal-container {
+    color: black;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 320px;
+  text-align: center;
+  position: relative;
+}
+
+/* Botão X pra fechar */
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Input e botão de buscar */
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.btn-buscar {
+  background-color: #22579D;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-buscar:hover {
+  background-color: #1a457d;
+}
+
+/* Mensagem de erro */
+.erro {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Resultado do CEP */
+.resultado {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
 }

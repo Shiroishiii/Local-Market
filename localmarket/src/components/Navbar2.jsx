@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 function Navbar2() {
   return (
     <div className='Navbar-container'>
-      <div className='navbar-left'>
+      <div className='navbar-left-2'>
         <img className='logoNav' src="./img/LogoAtu.svg" alt="" />
         <h3>LOCAL<span className='span-market'>MARKET</span></h3>
       </div>
-      <div className='navbar-center'>
+      <div className='navbar-center-2'>
       </div>
-      <div className='navbar-right'>
+      <div className='navbar-right-2'>
         <div className='profile-section'>
           <Link to={'/perfil'}><img className='profile-pic' src="./img/user.png" alt="Foto de perfil" /> </Link>
           <button className='cart-button'>
