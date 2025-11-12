@@ -168,3 +168,23 @@ border: none;
     background: linear-gradient(135deg, var(--cor-azul-marinho), var(--cor-preto));
     box-shadow: 0 6px 20px rgba(36, 58, 105, 0.4);
 }
+
+.cart-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
+    border: 2px solid var(--cor-branco);
+    color: var(--cor-branco);
+}
+
+.cart-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, var(--cor-azul-marinho), var(--cor-preto));
+    box-shadow: 0 6px 20px rgba(36, 58, 105, 0.4);
+}
