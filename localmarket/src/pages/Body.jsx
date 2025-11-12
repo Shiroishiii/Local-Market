@@ -1,4 +1,4 @@
-import  { useState, useMemo, useContext } from 'react'
+import { useState, useMemo, useContext } from 'react'
 import './Body.css'
 import ProductCard from '../components/ProductCard'
 import FilterBar from '../components/FilterBar'
@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 import { GlobalContext } from '../contexts/GlobalContext'
 
 function Body() {
-    const{isSidebarOpen, setIsSidebarOpen,toggleSidebar } = useContext(GlobalContext)
+  const { isSidebarOpen, setIsSidebarOpen, toggleSidebar } = useContext(GlobalContext)
 
   const [filters, setFilters] = useState({
     category: 'all',
@@ -197,8 +197,8 @@ function Body() {
 
       // Filtro por busca
       if (filters.search && !product.name.toLowerCase().includes(filters.search.toLowerCase()) &&
-          !product.description.toLowerCase().includes(filters.search.toLowerCase()) &&
-          !product.seller.toLowerCase().includes(filters.search.toLowerCase())) {
+        !product.description.toLowerCase().includes(filters.search.toLowerCase()) &&
+        !product.seller.toLowerCase().includes(filters.search.toLowerCase())) {
         return false
       }
 
@@ -216,10 +216,10 @@ function Body() {
 
 
   return (
-    
+
     <div className='body-container'>
       <Navbar />
-      <FilterBar 
+      <FilterBar
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
         isExpanded={isSidebarOpen}
@@ -237,7 +237,7 @@ function Body() {
           </div>
         )}
       </div>
-        </div>
+    </div>
   )
 }
 
