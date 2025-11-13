@@ -20,13 +20,14 @@ telefone BIGINT(20),
 tipo ENUM ('Locatario', 'Locador')
 );
 
-INSERT INTO usuario (nome, email, senha, rua, bairro, estado, cep, cpf, telefone, tipo)
+INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cpf, telefone, tipo)
 VALUES 
-('Maria Silva', 'maria.silva@email.com', 'senha123', 'Rua das Flores, 45', 'Centro', 'SP', 12345678, 12345678901, 11987654321, 'Locatario'),
-('João Pereira', 'joao.pereira@email.com', 'joao123', 'Av. Paulista, 1000', 'Bela Vista', 'SP', 98765432, 98765432100, 11999998888, 'Locador'),
-('Carla Souza', 'carla.souza@email.com', 'carla456', 'Rua do Sol, 10', 'Boa Vista', 'PE', 54321000, 32165498700, 81988887777, 'Locatario'),
-('Mercado Bom Preço', 'contato@bompreco.com', 'bompreco01', 'Av. Brasil, 200', 'Centro', 'RJ', 22290000, 1234500012345, 21999990000, 'Locador'),
-('Lucas Andrade', 'lucas.andrade@email.com', 'lucas999', 'Rua A, 15', 'Jardim América', 'MG', 30140000, 78945612300, 31977776666, 'Locatario');
+('Maria Silva', 'maria.silva@email.com', 'senha123', 'Campinas', 'Rua das Flores, 45', 'Centro', 'SP', 12345678, 12345678901, 11987654321, 'Locatario'),
+('João Pereira', 'joao.pereira@email.com', 'joao123', 'Forquilinhas', 'Av. Paulista, 1000', 'Bela Vista', 'SP', 98765432, 98765432100, 11999998888, 'Locador'),
+('Carla Souza', 'carla.souza@email.com', 'carla456', 'Itapema', 'Rua do Sol, 10', 'Boa Vista', 'PE', 54321000, 32165498700, 81988887777, 'Locatario'),
+('Mercado Bom Preço', 'contato@bompreco.com', 'bompreco01', 'Maceió', 'Av. Brasil, 200', 'Centro', 'RJ', 22290000, 1234500012345, 21999990000, 'Locador'),
+('Lucas Andrade', 'lucas.andrade@email.com', 'lucas999', 'Guarulhos', 'Rua A, 15', 'Jardim América', 'MG', 30140000, 78945612300, 31977776666, 'Locatario');
+
 
 SELECT * FROM usuario;
 
