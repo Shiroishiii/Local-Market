@@ -17,3 +17,80 @@
     padding: 20px 30px;
     margin: 100px;
 }
+
+.preco-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.qntd-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+/* .button-alugar {
+    color: white;
+    background-color: var(--cor-azul-marinho);
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    padding: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+} */
+
+/* .button-alugar:hover {
+    background-color: var(--cor-azul-pastel);
+    scale: 1.02;
+    transition: 0.2s ease-in;
+} */
+
+.button-alugar{
+    background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
+    color: var(--cor-branco);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-alugar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .button-alugar:hover {
+    background: linear-gradient(135deg, var(--cor-azul-marinho) 60%, var(--cor-preto) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(36, 58, 105, 0.4);
+  }
+  
+  .button-alugar:hover::before {
+    left: 100%;
+  }
+  
+  .button-alugar:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
+  }
