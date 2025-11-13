@@ -1,8 +1,13 @@
 import React from 'react'
 import './Perfil.css'
-
+import { Link } from 'react-router-dom'
 
 function Perfil() {
+  <Link to={'/'}></Link>
+
+  function Carrinho(){
+  <Link to={'/carrinho'}></Link>
+  }
   return (
     <div className='perfil-container'>
       <div className='sidebar-container'>
@@ -21,7 +26,7 @@ function Perfil() {
               stroke-linejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
             ></path></button>
-          <button className='button-sidebar'><p>Carrinho</p>
+          <button className='button-sidebar' onClick={'/carrinho'}><p>Carrinho</p>
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
