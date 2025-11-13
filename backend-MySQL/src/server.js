@@ -29,7 +29,7 @@ app.get('/usuario', async (req, res) => {
 app.get('/usuario/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const [rows] = await pool.query('SELECT * FROM usuario WHERE id = ?', [id]);
+        const [rows] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [id]);
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Usuario não encontrado' });
         }
@@ -41,6 +41,7 @@ app.get('/usuario/:id', async (req, res) => {
 });
 
 app.post('/usuario', async (req, res) => {
+    console.log('Corpo recebido: ', req.body);
     const { nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo } = req.body;
     try {
         const [result] = await pool.query(
