@@ -52,11 +52,11 @@
     width: 100%;
 }
 
-.title {
+.title-perfil {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--cor-branco);
+    color: white;
     margin: 20px;
 }
 
