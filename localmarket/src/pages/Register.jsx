@@ -16,25 +16,45 @@ function Register() {
         email: inputEmail.trim(),
         senha: inputSenha
       };
+      console.log("Dados enviados para API", cliente);
+      
       const response = await axios.post('http://localhost:3001/usuario',cliente);
+      console.log("res api", response.status);
+      
       if(response.status === 201){
-        limparForm()
+         limparForm()
       } 
         }catch (error) {
         console.error('Erro ao adicionar cliente:', error);
       }
-      if (!cliente.email) {
-        alert("O campo de e-mail é obrigatório!");
-        return;
-      }
-      
 
     };
 
+
+    const salvarCliente = async () => {
+      try{
+
+        const cliente = {
+          nome: inputNomeUsuario,
+          email: inputEmail,
+          senha: inputSenha
+        }
+        const response = await axios.put(`http://localhost:3001/usuario/${clienteSelecionado.id}`, cliente);
+        console.log(response);
+        
+        if (response.status = 200) {
+          limparForm();
+        }
+      } catch (error){
+        console.log("Erro ao atualizar cliente", error);
+      }
+    };
+
+    
     function limparForm(){
-      setNomeUsuario (''),
-      setinputEmail (''),
-      setinputSenha ('')
+      setinputNomeUsuario(''),
+      setinputEmail(''),
+      setinputSenha('')
 
     }
 
@@ -48,9 +68,9 @@ function Register() {
         <div className="form-container">
           <p className="title">Cadastre-se</p>
           <div className="form">
-            <input type="text" className='input' placeholder='Nome de usuário' />
-            <input type="email" className="input" placeholder="Email" />
-            <input type="password" className="input" placeholder="Senha" />
+            <input type="text" className='input' placeholder='Nome de usuário' onChange={(event) => setinputNomeUsuario(event.target.value)}/>
+            <input type="email" className="input" placeholder="Email" onChange ={(event) => setinputEmail(event.target.value)} />
+            <input type="password" className="input" placeholder="Senha" onChange={(event) => setinputSenha(event.target.value)} />
             <button className="form-btn" onClick={cadastrarCliente}>Cadastrar-se</button>
           </div>
           <p className="sign-up-label">
