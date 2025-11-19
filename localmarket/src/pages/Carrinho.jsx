@@ -13,7 +13,7 @@ function Carrinho() {
           <CardProduct />
           <CardProduct />
           <hr />
-          <p className='qntd-container'>Produtos(2) <span className='preco-container'>R$ 8 345,59</span></p>
+          <p className='qntd-container'>Produtos(3) <span className='preco-container'>R$ 8 345,59</span></p>
           <button className='button-alugar'>Alugar</button>
         </div>
       </div>
