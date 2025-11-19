@@ -31,24 +31,24 @@ function Register() {
     };
 
 
-    const salvarCliente = async () => {
-      try{
+    // const salvarCliente = async () => {
+    //   try{
 
-        const cliente = {
-          nome: inputNomeUsuario,
-          email: inputEmail,
-          senha: inputSenha
-        }
-        const response = await axios.put(`http://localhost:3001/usuario/${clienteSelecionado.id}`, cliente);
-        console.log(response);
+    //     const cliente = {
+    //       nome: inputNomeUsuario,
+    //       email: inputEmail,
+    //       senha: inputSenha
+    //     }
+    //     const response = await axios.put(`http://localhost:3001/usuario/${clienteSelecionado.id}`, cliente);
+    //     console.log(response);
         
-        if (response.status = 200) {
-          limparForm();
-        }
-      } catch (error){
-        console.log("Erro ao atualizar cliente", error);
-      }
-    };
+    //     if (response.status = 200) {
+    //       limparForm();
+    //     }
+    //   } catch (error){
+    //     console.log("Erro ao atualizar cliente", error);
+    //   }
+    // };
 
     
     function limparForm(){
