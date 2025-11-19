@@ -23,6 +23,8 @@
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
+    font-size: x-large;
+    height: 50px;
 }
 
 .qntd-container {
@@ -30,6 +32,7 @@
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
+    font-size: x-large;
 }
 
 /* .button-alugar {
