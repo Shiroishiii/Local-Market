@@ -11,7 +11,7 @@ function Perfil() {
   return (
     <div className='perfil-container'>
       <div className='sidebar-container'>
-        <h1 className='title'>LOCAL <span className='title-highlight'>MARKET</span></h1>
+        <h1 className='title-perfil'>LOCAL <span className='title-highlight'>MARKET</span></h1>
         <div className='sidebar-options'>
           <button className='button-sidebar'><p>Histórico de transações</p>
             <path
