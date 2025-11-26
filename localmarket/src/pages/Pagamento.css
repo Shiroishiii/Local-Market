@@ -1,0 +1,42 @@
+.pag-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor-branco);
+    min-height: calc(70px - 100vh);
+    overflow: hidden;
+}
+
+.pagamento-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 60%;
+    height: calc(100vh - 90px);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    background-color: var(--cor-branco);
+}
+
+.resumo-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 10px;
+    height: calc(100vh - 90px);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px   ;
+    background-color: var(--cor-branco);
+}
+
+.dados-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dados-form input {
+    width: 50%;
+}
