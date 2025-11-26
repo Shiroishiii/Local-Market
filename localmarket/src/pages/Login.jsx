@@ -23,7 +23,7 @@ import { Link, useNavigate } from 'react-router-dom'
         if(response.status === 201){
           
            limparForm()
-           useNavigate('/')
+           useNavigate('/');
         } 
           }catch (error) {
           console.error('Erro ao adicionar cliente:', error);
