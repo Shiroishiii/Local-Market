@@ -65,7 +65,7 @@
     display: flex;
     gap: 20px;
     align-items: center;
-    justify-content: flex-end;
+justify-content: space-evenly;    
 }
 
 /* Estilos dos elementos */
@@ -197,4 +197,10 @@ border: none;
     transform: scale(1.1);
     background: linear-gradient(135deg, var(--cor-azul-marinho), var(--cor-preto));
     box-shadow: 0 6px 20px rgba(36, 58, 105, 0.4);
+}
+
+.anunciar{
+    
+justify-content: space-evenly;
+
 }
