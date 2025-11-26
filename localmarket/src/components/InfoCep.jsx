@@ -63,7 +63,7 @@ import "./infoCep.css";
               type="text"
               value={cep}
               onChange={(e) => setCep(e.target.value)}
-              placeholder="Ex: 88095-300"
+              placeholder="Ex: 00000-000"
               maxLength={9}
             />
 
@@ -76,7 +76,7 @@ import "./infoCep.css";
              {endereco && (
               <div className="resultado">
                 <p>
-                  <strong>Endereço:</strong> {endereco.logradouro}, {endereco.bairro}
+                  <strong>Rua:</strong> {endereco.logradouro}, {endereco.bairro}
                 </p>
                 <p>
                   <strong>Cidade:</strong> {endereco.localidade} - {endereco.uf}

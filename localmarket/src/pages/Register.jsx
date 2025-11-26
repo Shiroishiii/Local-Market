@@ -4,6 +4,7 @@ import './Register.css'
 import { useState } from 'react'
 import axios from 'axios'
 
+
 function Register() {
     const [inputNomeUsuario, setinputNomeUsuario] = useState('')
     const [inputEmail, setinputEmail] = useState('')
@@ -23,11 +24,13 @@ function Register() {
       
       if(response.status === 201){
          limparForm()
+        
       } 
         }catch (error) {
         console.error('Erro ao adicionar cliente:', error);
       }
 
+    
     };
 
 
@@ -74,13 +77,13 @@ function Register() {
             <button className="form-btn" onClick={cadastrarCliente}>Cadastrar-se</button>
           </div>
           <p className="sign-up-label">
-            Já tem uma conta?<span className="sign-up-link">Faça login</span>
+            Já tem uma conta?<Link to = {'/login'}> <span className="sign-up-link">Faça login</span></Link>
           </p>
         </div>
       </div>
     </div>
   )
 }
-  
+ 
   
   export default Register
