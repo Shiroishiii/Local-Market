@@ -54,135 +54,20 @@ export default function Anunciar() {
 
   function enviarFormulario(e) {
     e.preventDefault();
+
+    const dados = new FormData();
+    dados.append("titulo", titulo);
+    dados.append("descricao", descricao);
+    dados.append("preco", preco);
+    dados.append("categoria", categoria);
+    dados.append("cep", cep);
+
+    imagens.forEach((img) => dados.append("imagens", img));
+    if (video) dados.append("video", video);
+
+    console.log("Enviando dados:", Object.fromEntries(dados));
+
     alert("Anúncio criado! (Simulação)");
-  }
-
-<<<<<<< HEAD
-  function prevImage() {
-    setImagemIndex((prev) =>
-      prev === 0 ? previewImagens.length - 1 : prev - 1
-=======
-        const dados = new FormData();
-        dados.append("titulo", titulo);
-        dados.append("descricao", descricao);
-        dados.append("preco", preco);
-        dados.append("categoria", categoria);
-
-        imagens.forEach((img) => dados.append("imagens", img));
-        if (video) dados.append("video", video);
-
-        console.log("Enviando dados:", Object.fromEntries(dados));
-
-        alert("Anúncio criado! (Simulação)");
-    }
-
-    return (
-        <div className="anunciar-container">
-
-            <h1 className="titulo-pagina">Criar Anúncio</h1>
-
-            <form onSubmit={enviarFormulario} className="anunciar-form">
-
-                <label>Título</label>
-                <input
-                    type="text"
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                    required
-                />
-
-                <label>Descrição</label>
-                <textarea
-                    rows={4}
-                    value={descricao}
-                    onChange={(e) => setDescricao(e.target.value)}
-                    required
-                ></textarea>
-
-                <label>Preço por dia (R$)</label>
-                <input
-                    type="number"
-                    value={preco}
-                    onChange={(e) => setPreco(e.target.value)}
-                    required
-                />
-
-                <label>Categoria</label>
-                <select
-                    value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
-                    required
-                >
-                    <option value="">Selecione</option>
-                    <option value="ferramentas">Ferramentas</option>
-                    <option value="eletronicos">Máquinas</option>
-                    <option value="eventos">Vestimentas</option>
-                    <option value="outros">Espaço kids</option>
-                    <option value="outros">Salão de festa</option>
-                
-                
-                
-                </select>
-
-                <hr />
-
-                <label>Imagens (máx. 8)</label>
-                <input
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    onChange={handleImagens}
-                />
-
-                <div className="preview-imagens">
-                    {previewImagens.map((src, index) => (
-                        <div key={index} className="preview-item">
-                            <img src={src} alt="preview" />
-
-                            <button
-                                type="button"
-                                className="remover-btn"
-                                onClick={() => removerImagem(index)}
-                            >
-                                X
-                            </button>
-                        </div>
-                    ))}
-                </div>
-
-                <hr />
-
-                <label>Vídeo (máx. 1)</label>
-
-                {!video && (
-                    <input
-                        type="file"
-                        accept="video/*"
-                        onChange={handleVideo}
-                    />
-                )}
-
-                {previewVideo && (
-                    <div className="preview-video">
-                        <video controls src={previewVideo}></video>
-
-                        <button
-                            type="button"
-                            className="remover-btn"
-                            onClick={removerVideo}
-                        >
-                            X
-                        </button>
-                    </div>
-                )}
-
-                <button type="submit" className="botao-enviar">
-                    Criar Anúncio
-                </button>
-            </form>
-        </div>
->>>>>>> 40104e3ef76e0bb90d802472ee30070f8cadd99d
-    );
   }
 
   function nextImage() {
@@ -191,59 +76,56 @@ export default function Anunciar() {
     );
   }
 
+  function prevImage() {
+    setImagemIndex((prev) =>
+      prev === 0 ? previewImagens.length - 1 : prev - 1
+    );
+  }
+
   return (
     <div className="anunciar-wrapper">
+
       {/* FORMULÁRIO */}
       <div className="form-container">
         <h1 className="titulo-pagina">Criar Anúncio</h1>
+
         <form onSubmit={enviarFormulario} className="anunciar-form">
-          
-          <label htmlFor="titulo">Título</label>
+
+          <label>Título</label>
           <input
-            id="titulo"
             type="text"
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
             required
-            placeholder="Ex: Furadeira Elétrica"
           />
 
-          <label htmlFor="descricao">Descrição</label>
+          <label>Descrição</label>
           <textarea
-            id="descricao"
             rows={4}
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
             required
-            placeholder="Descrição detalhada do produto"
           ></textarea>
 
-          <label htmlFor="preco">Preço por dia (R$)</label>
+          <label>Preço por dia (R$)</label>
           <input
-            id="preco"
             type="number"
-            min="0"
-            step="0.01"
             value={preco}
             onChange={(e) => setPreco(e.target.value)}
             required
-            placeholder="Ex: 25.00"
           />
 
-          <label htmlFor="cep">CEP</label>
+          <label>CEP</label>
           <input
-            id="cep"
             type="text"
             maxLength="9"
             value={cep}
             onChange={(e) => setCep(e.target.value)}
-            placeholder="Ex: 12345-678"
             required
           />
 
-          <label htmlFor="categoria">Categoria</label>
+          <label>Categoria</label>
           <select
-            id="categoria"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
             required
@@ -263,13 +145,13 @@ export default function Anunciar() {
           <div className="preview-imagens">
             {previewImagens.map((src, index) => (
               <div key={index} className="preview-item">
-                <img src={src} alt={`preview ${index + 1}`} />
+                <img src={src} alt="preview" />
                 <button
                   type="button"
                   className="remover-btn"
                   onClick={() => removerImagem(index)}
                 >
-                  ×
+                  X
                 </button>
               </div>
             ))}
@@ -290,7 +172,7 @@ export default function Anunciar() {
                 className="remover-btn"
                 onClick={removerVideo}
               >
-                ×
+                X
               </button>
             </div>
           )}
@@ -304,17 +186,19 @@ export default function Anunciar() {
       {/* PREVIEW */}
       <div className="preview-container">
         <h2>Prévia do seu anúncio</h2>
+
         <div className="preview-content">
-          {/* MÍDIA */}
           <div className="preview-media">
             {previewImagens.length > 0 ? (
               <>
                 <button className="nav-btn left" onClick={prevImage}>‹</button>
+
                 <img
                   src={previewImagens[imagemIndex]}
                   alt={`Imagem ${imagemIndex + 1}`}
                   className="preview-main-img"
                 />
+
                 <button className="nav-btn right" onClick={nextImage}>›</button>
               </>
             ) : previewVideo ? (
@@ -324,17 +208,12 @@ export default function Anunciar() {
             )}
           </div>
 
-          {/* DETALHES */}
           <div className="preview-details">
-            <h3 className="preview-title">{titulo || "Título do anúncio"}</h3>
-            <p className="preview-price">{preco ? `R$ ${preco}/dia` : "Preço"}</p>
-            <p className="preview-desc">
-              {descricao || "Descrição do anúncio aparecerá aqui."}
-            </p>
-            <p className="preview-categoria">
-              {categoria ? `Categoria: ${categoria}` : "Categoria"}
-            </p>
-            <p className="preview-cep">{cep ? `CEP: ${cep}` : "CEP"}</p>
+            <h3>{titulo || "Título do anúncio"}</h3>
+            <p>{preco ? `R$ ${preco}/dia` : "Preço"}</p>
+            <p>{descricao || "Descrição do anúncio aparecerá aqui."}</p>
+            <p>{categoria ? `Categoria: ${categoria}` : "Categoria"}</p>
+            <p>{cep ? `CEP: ${cep}` : "CEP"}</p>
           </div>
         </div>
       </div>
