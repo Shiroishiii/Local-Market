@@ -57,7 +57,7 @@ import "./infoCep.css";
               &times;
             </button>
 
-            <h2>Digite teu CEP</h2>
+            <h2 className="font-subtitulos">Digite teu CEP</h2>
 
             <input
               type="text"

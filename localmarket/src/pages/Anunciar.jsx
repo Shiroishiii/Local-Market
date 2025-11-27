@@ -102,9 +102,13 @@ export default function Anunciar() {
                 >
                     <option value="">Selecione</option>
                     <option value="ferramentas">Ferramentas</option>
-                    <option value="eletronicos">Eletrônicos</option>
-                    <option value="eventos">Eventos</option>
-                    <option value="outros">Outros</option>
+                    <option value="eletronicos">Máquinas</option>
+                    <option value="eventos">Vestimentas</option>
+                    <option value="outros">Espaço kids</option>
+                    <option value="outros">Salão de festa</option>
+                
+                
+                
                 </select>
 
                 <hr />
