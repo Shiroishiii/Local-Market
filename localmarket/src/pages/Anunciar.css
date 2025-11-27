@@ -4,6 +4,7 @@
     margin: auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+    background-color: var(--cor-cinza-claro);
 }
 
 /* TÍTULO */
@@ -90,7 +91,7 @@
     font-size: 16px;
     border: none;
     border-radius: 6px;
-    background: #1976d2;
+    background: var(--cor-azul-marinho);
     color: white;
     cursor: pointer;
 }

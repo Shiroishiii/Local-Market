@@ -6,6 +6,7 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+  margin-bottom: 25px;
 }
 
 .btn-cep:hover {
@@ -81,6 +82,7 @@ input {
 .erro {
   color: red;
   margin-top: 10px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
 
 /* Resultado do CEP */
@@ -88,4 +90,7 @@ input {
   margin-top: 15px;
   font-size: 14px;
   color: #333;
+}
+.font-subtitulos{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
 }
