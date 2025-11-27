@@ -49,7 +49,9 @@ function Navbar() {
         </button>
       </div>
       <div className='navbar-right'>
-      <button className='anunciar'>Anunciar</button>
+      <Link to="/anunciar">
+        <button className='anunciar'>Anunciar</button>
+        </Link>
         <div className='profile-section'>
           <Link to={'/perfil'}><img className='profile-pic' src="./img/user.png" alt="Foto de perfil" /> </Link>
           <button className='cart-button'>
