@@ -28,7 +28,7 @@ function Navbar() {
 
       <div className='navbar-left'>
         <img className='logoNav' src="./img/LogoAtu.svg" alt="" />
-        <h3 className='span-local'>LOCAL <span className='span-market'>MARKET</span></h3>
+        <h3 className='span-local'>LOCAL <span className='span-market'> MARKET</span></h3>
         <div className='location-section'>
           <img className='icon-local' src="./img/local.svg" alt="Localização" />
           <InfoCep />
@@ -49,9 +49,13 @@ function Navbar() {
         </button>
       </div>
       <div className='navbar-right'>
+<<<<<<< HEAD
       <Link to="/anunciar">
         <button className='anunciar'>Anunciar</button>
         </Link>
+=======
+      <Link to = {'/anunciar'}> <button className='btn-anunciar-border'>Anuncie seu produto</button></Link>
+>>>>>>> 40104e3ef76e0bb90d802472ee30070f8cadd99d
         <div className='profile-section'>
           <Link to={'/perfil'}><img className='profile-pic' src="./img/user.png" alt="Foto de perfil" /> </Link>
           <button className='cart-button'>

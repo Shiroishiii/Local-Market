@@ -6,6 +6,7 @@
     display: flex;
     min-height: 100vh;
     font-family: Arial, sans-serif;
+<<<<<<< HEAD
     background: #f7f7f7;
     color: #222;
   }
@@ -21,6 +22,13 @@
   }
   
   .titulo-pagina {
+=======
+    background-color: var(--cor-cinza-claro);
+}
+
+/* TÍTULO */
+.titulo-pagina {
+>>>>>>> 40104e3ef76e0bb90d802472ee30070f8cadd99d
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 30px;
@@ -125,8 +133,13 @@
     font-size: 18px;
     font-weight: 700;
     border: none;
+<<<<<<< HEAD
     border-radius: 8px;
     background: #1976d2;
+=======
+    border-radius: 6px;
+    background: var(--cor-azul-marinho);
+>>>>>>> 40104e3ef76e0bb90d802472ee30070f8cadd99d
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
