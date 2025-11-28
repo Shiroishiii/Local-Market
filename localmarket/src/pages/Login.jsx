@@ -5,41 +5,32 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
   function Login() {
-    const[ inputEmail, setinputEmail] = useState('')
-    const[ inputSenha, setinputSenha] = useState('')
+    const[ inputEmailLogin, setinputEmailLogin] = useState('')
+    const[ inputSenhaLogin, setinputSenhaLogin] = useState('')
     const navigate = useNavigate();
 
     const Logar = async () => {
       try{
         const cliente = {
-          email: inputEmail.trim(),
-          senha: inputSenha
+          email: inputEmailLogin.trim(),
+          senha: inputSenhaLogin
         }
         console.log("Dados enviados para API", cliente);
       
-        const response = await axios.post('http://localhost:3001/usuario',cliente);
+        const response = await axios.post('http://localhost:3001/login', cliente);
         console.log("res api", response.status);
         
-        if(response.status === 201){
+        if(response.status === 200){
           
-           limparForm()
-           useNavigate('/');
+   
+           navigate('/');
         } 
           }catch (error) {
-          console.error('Erro ao adicionar cliente:', error);
+          console.error('Erro ao logar:', error);
         }
   
       };
         
-
-
-
-      
-      
-      
-      
-
-  
       
       return (
         <div>
@@ -49,8 +40,8 @@ import { Link, useNavigate } from 'react-router-dom'
         <div className="form-container">
           <p className="title">Fazer Login</p>
           <form className="form">
-            <input type="text" className="input" placeholder="Nome de usuário" onChange={(event) => setinputEmail(event.target.value)}  />
-            <input type="password" className="input" placeholder="Senha"  onChange={(e) => setinputSenha(e.target.value)}/>
+            <input type="text" className="input" placeholder="Nome de usuário" onChange={(event) => setinputEmailLogin(event.target.value)}  />
+            <input type="password" className="input" placeholder="Senha"  onChange={(e) => setinputSenhaLogin(e.target.value)}/>
             <p className="page-link">
               {/* <span className="page-link-label">Esqueceu a senha?</span> */}
             </p>
