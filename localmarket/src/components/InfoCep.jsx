@@ -28,7 +28,7 @@ import "./infoCep.css";
       } else {
         setErro("");
         setEndereco(dados);
-
+        salvarEnderecoNoBanco(dados);
         // ✅ Fechar o modal automaticamente após buscar
         setShowModal(false);
       }
@@ -36,6 +36,30 @@ import "./infoCep.css";
       setErro("Erro ao buscar o CEP.");
     }
   };
+
+  const salvarEnderecoNoBanco = async (dados) => {
+    try {
+      await fetch("http://localhost:3001/usuario/endereco", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id_usuario: 1,  
+          cidade: endereco.localidade,
+          rua: endereco.logradouro,
+          bairro: endereco.bairro,
+          estado: endereco.uf,
+          cep: endereco.cep
+        }),
+      });
+
+      console.log("Endereço salvo no banco com sucesso.");
+    } catch (error) {
+      console.error("Erro ao salvar endereço:", error);
+    }
+  };
+
 
   return (
     <>
