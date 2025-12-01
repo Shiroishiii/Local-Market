@@ -1,222 +1,135 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./Anunciar.css";
 
 export default function Anunciar() {
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [preco, setPreco] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [cep, setCep] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [preco, setPreco] = useState("");
+    const [cep, setCep] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [bairro, setBairro] = useState("");
+    const [imagens, setImagens] = useState([]);
+    const [video, setVideo] = useState(null);
 
-  const [imagens, setImagens] = useState([]);
-  const [previewImagens, setPreviewImagens] = useState([]);
+    // ⬇ Busca cidade/bairro automaticamente
+    const buscarCep = async (valor) => {
+        setCep(valor);
 
-  const [video, setVideo] = useState(null);
-  const [previewVideo, setPreviewVideo] = useState(null);
+        if (valor.length === 8) {
+            const req = await fetch(`https://viacep.com.br/ws/${valor}/json/`);
+            const data = await req.json();
 
-  const [imagemIndex, setImagemIndex] = useState(0);
+            if (!data.erro) {
+                setCidade(data.localidade);
+                setBairro(data.bairro);
+            }
+        }
+    };
 
-  function handleImagens(e) {
-    const files = Array.from(e.target.files);
+    // ⬇ Salva imagens selecionadas
+    const handleImagens = (e) => {
+        const files = Array.from(e.target.files);
+        setImagens(files.map((file) => URL.createObjectURL(file)));
+    };
 
-    if (imagens.length + files.length > 10) {
-      alert("Você pode enviar no máximo 10 imagens.");
-      return;
-    }
+    // ⬇ Salva vídeo
+    const handleVideo = (e) => {
+        const file = e.target.files[0];
+        if (file) setVideo(URL.createObjectURL(file));
+    };
 
-    setImagens([...imagens, ...files]);
-    setPreviewImagens([
-      ...previewImagens,
-      ...files.map((f) => URL.createObjectURL(f)),
-    ]);
-  }
+    // ⬇ Enviar produto
+    const enviarItem = () => {
+        alert("🚀 Produto pronto para enviar ao backend!");
+        // Depois conectaremos ao seu backend
+    };
 
-  function handleVideo(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setVideo(file);
-      setPreviewVideo(URL.createObjectURL(file));
-    }
-  }
+    return (
+        <div className="anunciar-container">
 
-  function removerImagem(i) {
-    setImagens(imagens.filter((_, index) => index !== i));
-    setPreviewImagens(previewImagens.filter((_, index) => index !== i));
-    if (imagemIndex >= i && imagemIndex > 0) {
-      setImagemIndex(imagemIndex - 1);
-    }
-  }
+            {/* COLUNA ESQUERDA — FORMULÁRIO COM SCROLL */}
+            <div className="form-area">
 
-  function removerVideo() {
-    setVideo(null);
-    setPreviewVideo(null);
-  }
+                <h2>Anunciar Produto</h2>
 
-  function enviarFormulario(e) {
-    e.preventDefault();
+                <label>Título</label>
+                <input value={titulo} onChange={(e) => setTitulo(e.target.value)} />
 
-    const dados = new FormData();
-    dados.append("titulo", titulo);
-    dados.append("descricao", descricao);
-    dados.append("preco", preco);
-    dados.append("categoria", categoria);
-    dados.append("cep", cep);
-
-    imagens.forEach((img) => dados.append("imagens", img));
-    if (video) dados.append("video", video);
-
-    console.log("Enviando dados:", Object.fromEntries(dados));
-
-    alert("Anúncio criado! (Simulação)");
-  }
-
-  function nextImage() {
-    setImagemIndex((prev) =>
-      prev === previewImagens.length - 1 ? 0 : prev + 1
-    );
-  }
-
-  function prevImage() {
-    setImagemIndex((prev) =>
-      prev === 0 ? previewImagens.length - 1 : prev - 1
-    );
-  }
-
-  return (
-    <div className="anunciar-wrapper">
-
-      {/* FORMULÁRIO */}
-      <div className="form-container">
-        <h1 className="titulo-pagina">Criar Anúncio</h1>
-
-        <form onSubmit={enviarFormulario} className="anunciar-form">
-
-          <label>Título</label>
-          <input
-            type="text"
-            value={titulo}
-            onChange={(e) => setTitulo(e.target.value)}
-            required
-          />
-
-          <label>Descrição</label>
-          <textarea
-            rows={4}
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-            required
-          ></textarea>
-
-          <label>Preço por dia (R$)</label>
-          <input
-            type="number"
-            value={preco}
-            onChange={(e) => setPreco(e.target.value)}
-            required
-          />
-
-          <label>CEP</label>
-          <input
-            type="text"
-            maxLength="9"
-            value={cep}
-            onChange={(e) => setCep(e.target.value)}
-            required
-          />
-
-          <label>Categoria</label>
-          <select
-            value={categoria}
-            onChange={(e) => setCategoria(e.target.value)}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value="ferramentas">Ferramentas</option>
-            <option value="eletronicos">Eletrônicos</option>
-            <option value="eventos">Eventos</option>
-            <option value="outros">Outros</option>
-          </select>
-
-          <hr />
-
-          <label>Imagens (máx. 10)</label>
-          <input type="file" multiple accept="image/*" onChange={handleImagens} />
-
-          <div className="preview-imagens">
-            {previewImagens.map((src, index) => (
-              <div key={index} className="preview-item">
-                <img src={src} alt="preview" />
-                <button
-                  type="button"
-                  className="remover-btn"
-                  onClick={() => removerImagem(index)}
-                >
-                  X
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <hr />
-
-          <label>Vídeo (máx. 1)</label>
-          {!video && (
-            <input type="file" accept="video/*" onChange={handleVideo} />
-          )}
-
-          {previewVideo && (
-            <div className="preview-video">
-              <video controls src={previewVideo}></video>
-              <button
-                type="button"
-                className="remover-btn"
-                onClick={removerVideo}
-              >
-                X
-              </button>
-            </div>
-          )}
-
-          <button type="submit" className="botao-enviar">
-            Criar Anúncio
-          </button>
-        </form>
-      </div>
-
-      {/* PREVIEW */}
-      <div className="preview-container">
-        <h2>Prévia do seu anúncio</h2>
-
-        <div className="preview-content">
-          <div className="preview-media">
-            {previewImagens.length > 0 ? (
-              <>
-                <button className="nav-btn left" onClick={prevImage}>‹</button>
-
-                <img
-                  src={previewImagens[imagemIndex]}
-                  alt={`Imagem ${imagemIndex + 1}`}
-                  className="preview-main-img"
+                <label>Descrição</label>
+                <textarea
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
                 />
 
-                <button className="nav-btn right" onClick={nextImage}>›</button>
-              </>
-            ) : previewVideo ? (
-              <video controls src={previewVideo} className="preview-main-video"></video>
-            ) : (
-              <div className="preview-placeholder">Sem mídia</div>
-            )}
-          </div>
+                <label>Categoria</label>
+                <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                    <option value="">Selecione</option>
+                    <option value="Ferramentas">Ferramentas</option>
+                    <option value="Construção">Construção</option>
+                    <option value="Eletrônicos">Eletrônicos</option>
+                </select>
 
-          <div className="preview-details">
-            <h3>{titulo || "Título do anúncio"}</h3>
-            <p>{preco ? `R$ ${preco}/dia` : "Preço"}</p>
-            <p>{descricao || "Descrição do anúncio aparecerá aqui."}</p>
-            <p>{categoria ? `Categoria: ${categoria}` : "Categoria"}</p>
-            <p>{cep ? `CEP: ${cep}` : "CEP"}</p>
-          </div>
+                <label>Preço da diária</label>
+                <input
+                    type="number"
+                    value={preco}
+                    onChange={(e) => setPreco(e.target.value)}
+                />
+
+                <label>CEP</label>
+                <input
+                    value={cep}
+                    onChange={(e) => buscarCep(e.target.value)}
+                    maxLength={8}
+                />
+
+                <label>Cidade</label>
+                <input value={cidade} readOnly />
+
+                <label>Bairro</label>
+                <input value={bairro} readOnly />
+
+                <label>Imagens (máx 10)</label>
+                <input type="file" multiple accept="image/*" onChange={handleImagens} />
+
+                <label>Vídeo</label>
+                <input type="file" accept="video/*" onChange={handleVideo} />
+
+                <button onClick={enviarItem}>Publicar</button>
+            </div>
+
+            {/* COLUNA DIREITA — PRÉ-VISUALIZAÇÃO ESTILO FACEBOOK */}
+            <div className="preview-area">
+
+                <h2>Pré-visualização</h2>
+
+                {/* Imagem / vídeo maior à direita */}
+                <div className="preview-media">
+                    {video ? (
+                        <video controls src={video} />
+                    ) : imagens.length > 0 ? (
+                        <img src={imagens[0]} alt="preview" />
+                    ) : (
+                        <div className="preview-placeholder">Nenhuma mídia selecionada</div>
+                    )}
+                </div>
+
+                {/* Miniaturas embaixo */}
+                <div className="preview-thumbs">
+                    {imagens.map((img, i) => (
+                        <img key={i} src={img} />
+                    ))}
+                </div>
+
+                {/* Informações abaixo — igual Facebook */}
+                <div className="preview-info">
+                    <h3>{titulo || "Título do produto"}</h3>
+                    <p>{descricao || "Descrição aparecerá aqui."}</p>
+                    <strong>{preco ? `R$ ${preco}/dia` : "Preço da diária"}</strong>
+                    <p>{bairro && `${bairro}, ${cidade}`}</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
