@@ -91,6 +91,32 @@ app.delete('/usuario/:id', async (req, res) => {
 
 
 
+//LOGIN
+
+app.post('/login', async (req, res) => {
+    const { email, senha } = req.body;
+
+    try {
+        // Busca usuário pelo email e senha
+        const [rows] = await pool.query(
+            'SELECT * FROM usuario WHERE email = ? AND senha = ?',
+            [email, senha]
+        );
+
+        if (rows.length === 0) {
+            return res.status(401).json({ error: 'Email ou senha incorretos' });
+        }
+
+        // Usuário encontrado
+        res.json(rows[0]);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao realizar login' });
+    }
+});
+
+
 
 
 
@@ -416,3 +442,34 @@ app.listen(3001, () => {
     console.log('Servidor rodando na porta 3000');
 });
 
+
+
+
+
+
+
+// SALVANDO CEP
+
+app.put("/usuario/endereco", (req, res) => {
+    const { id_usuario, cidade, rua, bairro, estado, cep } = req.body;
+  
+    const sql = `
+      UPDATE usuario
+      SET cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?
+      WHERE id_usuario = ?
+    `;
+  
+    connection.query(
+      sql,
+      [cidade, rua, bairro, estado, cep, id_usuario],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({ erro: "Erro ao salvar endereço" });
+        }
+  
+        res.json({ msg: "Endereço atualizado com sucesso!" });
+      }
+    );
+  });
+  

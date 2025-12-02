@@ -1,100 +1,89 @@
-/* CONTAINER GERAL */
 .anunciar-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-/* TÍTULO */
-.titulo-pagina {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-/* FORMULÁRIO */
-.anunciar-form {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    height: 100vh;
+    background: #f1f1f1;
+}
+
+/* ----- COLUNA ESQUERDA ----- */
+.form-area {
+    width: 40%;
+    overflow-y: scroll;
+    background: white;
     padding: 20px;
-    border: 1px solid #ccc;
-    background: #fff;
-    border-radius: 8px;
+    border-right: 1px solid #ccc;
 }
 
-/* CAMPOS */
-.anunciar-form label {
+.form-area label {
     font-weight: bold;
+    margin-top: 10px;
+    display: block;
 }
 
-.anunciar-form input,
-.anunciar-form select,
-.anunciar-form textarea {
-    padding: 10px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-/* PREVIEW DE IMAGENS */
-.preview-imagens {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.preview-item {
-    position: relative;
-}
-
-.preview-item img {
-    width: 120px;
-    height: 120px;
-    border-radius: 6px;
-    object-fit: cover;
-    border: 1px solid #ccc;
-}
-
-/* PREVIEW DE VÍDEO */
-.preview-video {
-    position: relative;
-    width: 300px;
-}
-
-.preview-video video {
+.form-area input,
+.form-area textarea,
+.form-area select {
     width: 100%;
+    padding: 10px;
+    margin-top: 5px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
 }
 
-/* BOTÃO DE REMOVER (X) */
-.remover-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 25px;
-    height: 25px;
-    border: none;
-    border-radius: 50%;
-    background: red;
+.form-area button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    background: #1877f2;
     color: white;
-    font-weight: bold;
-    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
 }
 
-/* BOTÃO DE ENVIAR */
-.botao-enviar {
-    padding: 12px;
-    font-size: 16px;
-    border: none;
+/* ----- COLUNA DIREITA PREVIEW ----- */
+.preview-area {
+    width: 60%;
+    padding: 20px;
+}
+
+.preview-media {
+    width: 100%;
+    height: 55%;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-media img,
+.preview-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-placeholder {
+    color: #555;
+}
+
+.preview-thumbs {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.preview-thumbs img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 6px;
-    background: #1976d2;
-    color: white;
-    cursor: pointer;
 }
 
-.botao-enviar:hover {
-    background: #145ca3;
+/* ----- INFO TEXTO ----- */
+.preview-info {
+    margin-top: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
 }
