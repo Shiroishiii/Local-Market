@@ -33,10 +33,119 @@
 }
 
 .dados-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px;
+}
+
+.dados-form label{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .dados-form input {
-    width: 50%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 6px;
+    border-color: 1px solid var(--cor-azul-marinho);
+    outline: none;
 }
+
+.payment-container{
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.button-payment{
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button-payment:hover{
+    background: #ddd;
+}
+
+.button-payment:first-child{
+    grid-column: span 2;
+    font: 16px;
+}
+
+.info-location{
+    height: 70%;
+    overflow-y: auto;
+    border-radius: 10px;
+    background: #ddd;
+}
+
+.subtotal-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.price-container{
+    display: flex;
+    font-size: 20px;
+    font-weight: 200;
+    flex-direction: row;
+    margin: 0 0 0 500px;
+}
+
+.button-location{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
+    color: var(--cor-branco);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    margin: 30px;
+}
+
+.button-location::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .button-location:hover {
+    background: linear-gradient(135deg, var(--cor-azul-marinho) 60%, var(--cor-preto) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(36, 58, 105, 0.4);
+  }
+  
+  .button-location:hover::before {
+    left: 100%;
+  }
+  
+  .button-location:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
+  }
