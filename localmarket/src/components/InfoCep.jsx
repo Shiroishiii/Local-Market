@@ -1,20 +1,20 @@
-// AQUI TA O PURO SUCO DO CHAT (CHAMA PROFESSOR PRA MELHORAR E EXPLICAR )
-
 import { useState } from "react";
 import "./infoCep.css";
 
- function InfoCep() {
+function InfoCep() {
   const [showModal, setShowModal] = useState(false);
   const [cep, setCep] = useState("");
-  const [endereco, setEndereco] = useState(null);
+  const [rua, setRua] = useState(null);
   const [erro, setErro] = useState("");
+
+
 
   const buscarCep = async () => {
     const cepLimpo = cep.replace(/\D/g, "");
 
     if (cepLimpo.length !== 8) {
       setErro("Digite um CEP válido.");
-      setEndereco(null);
+      setRua(null);
       return;
     }
 
@@ -24,12 +24,15 @@ import "./infoCep.css";
 
       if (dados.erro) {
         setErro("CEP não encontrado!");
-        setEndereco(null);
+        setRua(null);
       } else {
         setErro("");
-        setEndereco(dados);
+        setRua(dados);
+
+        // 👇 SALVAR O ENDEREÇO NO BANCO
         salvarEnderecoNoBanco(dados);
-        // ✅ Fechar o modal automaticamente após buscar
+
+        // Fechar modal depois
         setShowModal(false);
       }
     } catch {
@@ -38,35 +41,41 @@ import "./infoCep.css";
   };
 
   const salvarEnderecoNoBanco = async (dados) => {
-    try {
-      await fetch("http://localhost:3001/usuario/endereco", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id_usuario: 1,  
-          cidade: endereco.localidade,
-          rua: endereco.logradouro,
-          bairro: endereco.bairro,
-          estado: endereco.uf,
-          cep: endereco.cep
-        }),
-      });
+  try {
+    const id_usuario = localStorage.getItem("id_usuario");
 
-      console.log("Endereço salvo no banco com sucesso.");
-    } catch (error) {
-      console.error("Erro ao salvar endereço:", error);
+  const resposta =  await fetch("http://localhost:3001/usuario/endereco", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_usuario,
+        cidade: dados.localidade,
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        estado: dados.uf,
+        cep: dados.cep
+      }),
+    });
+    if(!resposta.ok){
+      const erro = await resposta.json();
+      console.error("Erro ao salvar:", erro);
+      return;
     }
-  };
+    console.log("Endereço salvo com sucesso.");
+  }catch (error){
+    console.log("ERRO FATAL no salvarendereco:", error)
+  }
+}
 
+
+  
 
   return (
     <>
-      {/* 🔹 BOTÃO NA NAVBAR */}
       <button className="btn-cep" onClick={() => setShowModal(true)}>
-        {/* Se já tiver endereço, mostra a rua. Se não, mostra o texto padrão */}
-        {endereco ? endereco.logradouro : "Informe teu CEP"}
+        {rua ? rua.logradouro : "Informe teu CEP"}
       </button>
 
       {showModal && (
@@ -97,16 +106,16 @@ import "./infoCep.css";
 
             {erro && <p className="erro">{erro}</p>}
 
-             {endereco && (
+            {rua && (
               <div className="resultado">
                 <p>
-                  <strong>Rua:</strong> {endereco.logradouro}, {endereco.bairro}
+                  <strong>Rua:</strong> {rua.logradouro}, {rua.bairro}
                 </p>
                 <p>
-                  <strong>Cidade:</strong> {endereco.localidade} - {endereco.uf}
+                  <strong>Cidade:</strong> {rua.localidade} - {rua.uf}
                 </p>
               </div>
-              )}
+            )}
           </div>
         </div>
       )}
