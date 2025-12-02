@@ -23,8 +23,8 @@ function Register() {
       console.log("res api", response.status);
       
       if(response.status === 201){
+        localStorage.setItem("id_usuario", response.data.id_usuario);        
          limparForm()
-        
       } 
         }catch (error) {
         console.error('Erro ao adicionar cliente:', error);
@@ -33,25 +33,6 @@ function Register() {
     
     };
 
-
-    // const salvarCliente = async () => {
-    //   try{
-
-    //     const cliente = {
-    //       nome: inputNomeUsuario,
-    //       email: inputEmail,
-    //       senha: inputSenha
-    //     }
-    //     const response = await axios.put(`http://localhost:3001/usuario/${clienteSelecionado.id}`, cliente);
-    //     console.log(response);
-        
-    //     if (response.status = 200) {
-    //       limparForm();
-    //     }
-    //   } catch (error){
-    //     console.log("Erro ao atualizar cliente", error);
-    //   }
-    // };
 
     
     function limparForm(){

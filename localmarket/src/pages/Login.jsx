@@ -18,6 +18,7 @@ import { Link, useNavigate } from 'react-router-dom'
         console.log("Dados enviados para API", cliente);
       
         const response = await axios.post('http://localhost:3001/login', cliente);
+        
         console.log("res api", response.status);
         
         if(response.status === 200){
@@ -30,7 +31,8 @@ import { Link, useNavigate } from 'react-router-dom'
         }
   
       };
-        
+
+
       
       return (
         <div>
