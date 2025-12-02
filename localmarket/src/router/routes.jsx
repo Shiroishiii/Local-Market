@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Carrinho from "../pages/Carrinho";
 import Anunciar from "../pages/Anunciar";
 import Pagamento from "../pages/Pagamento";
+import Produto from "../pages/Produto";
 
 const router = createBrowserRouter([
 
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
     {path: '/login', element: <Login />},
     {path: '/carrinho', element: <Carrinho/>},
     {path: '/anunciar', element: <Anunciar/>},
-    {path: '/pagamento', element: <Pagamento />}
+    {path: '/pagamento', element: <Pagamento />},
+    {path: '/produto', element: <Produto/>}
 
 ])
 
