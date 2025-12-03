@@ -19,8 +19,8 @@ function InfoCep() {
     }
 
     try {
-      const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
-      const dados = await resposta.json();
+      const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+      const dados = await response.json();
 
       if (dados.erro) {
         setErro("CEP não encontrado!");
@@ -44,7 +44,7 @@ function InfoCep() {
   try {
     const id_usuario = localStorage.getItem("id_usuario");
 
-  const resposta =  await fetch("http://localhost:3001/usuario/endereco", {
+  const response =  await fetch("http://localhost:3001/usuario/endereco", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -58,8 +58,8 @@ function InfoCep() {
         cep: dados.cep
       }),
     });
-    if(!resposta.ok){
-      const erro = await resposta.json();
+    if(!response.ok){
+      const erro = await response.json();
       console.error("Erro ao salvar:", erro);
       return;
     }
