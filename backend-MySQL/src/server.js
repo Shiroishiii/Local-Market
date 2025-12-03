@@ -448,28 +448,5 @@ app.listen(3001, () => {
 
 
 
-// SALVANDO CEP
-
-app.put("/usuario/endereco", (req, res) => {
-    const { id_usuario, cidade, rua, bairro, estado, cep } = req.body;
-  
-    const sql = `
-      UPDATE usuario
-      SET cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?
-      WHERE id_usuario = ?
-    `;
-  
-    connection.query(
-      sql,
-      [cidade, rua, bairro, estado, cep, id_usuario],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ erro: "Erro ao salvar endereço" });
-        }
-  
-        res.json({ msg: "Endereço atualizado com sucesso!" });
-      }
-    );
-  });
+// LOCATARIO
   
