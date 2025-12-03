@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./Anunciar.css";
+import axios from 'axios'
 
 export default function Anunciar() {
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [categoria, setCategoria] = useState("");
     const [preco, setPreco] = useState("");
-    const [cep, setCep] = useState("");
     const [cidade, setCidade] = useState("");
     const [bairro, setBairro] = useState("");
+    const [cep, setCep] = useState("");
+    const [telefone, setTelefone] = useState('')
     const [imagens, setImagens] = useState([]);
     const [video, setVideo] = useState(null);
 
@@ -40,8 +42,31 @@ export default function Anunciar() {
     };
 
     //  Enviar produto
-    const enviarItem = () => {
-        alert("🚀 Produto pronto para enviar ao backend!");
+    const enviarItem = async () => {
+           try{
+      const item = {
+        titulo: titulo,
+        descricao: descricao,
+        categoria: categoria,
+        preco: preco,
+        cidade: cidade,
+        bairro: bairro,
+        cep: cep,
+        telefone: telefone
+      };
+      console.log("Dados enviados para API", item);
+      
+      const response = await axios.post('http://localhost:3001/item',item);
+      console.log("res api", response.status);
+      
+      if(response.status === 201){
+          alert("🚀 Produto enviado ao backend!");
+      } 
+        }catch (error) {
+        console.error('Erro ao adicionar item:', error);
+      }
+
+    
     };
 
     return (
@@ -88,6 +113,11 @@ export default function Anunciar() {
 
                 <label>Bairro</label>
                 <input value={bairro} readOnly />
+
+                <label htmlFor=""> Telefone</label>
+                <input type="text" 
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}/>
 
                 <label>Imagens (máx 10)</label>
                 <input type="file" multiple accept="image/*" onChange={handleImagens} />
