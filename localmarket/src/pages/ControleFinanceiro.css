@@ -1,0 +1,41 @@
+.controleFinanceiro-container{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor-cinza-claro);
+    height: 100vh;
+    width: 100%;
+    gap: 5px;
+}
+
+.titulo-controleFinaceiro{
+    display: flex;
+    justify-content: center;
+  border-bottom: 1px solid black;
+  
+    width: 100%;
+}
+
+
+.transacoes-controleFinanceiro{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius:10px ;
+    background-color: var(--cor-branco);
+    width: 95%;
+    height: 95vh;
+    box-shadow:0px 4px 8px rgba(0, 0, 0, 0.762);
+
+}
+
+.grafico-controleFinanceiro {
+  width: 50%;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.informacoes-controleFinanceiro{
+    height: 70%;
+}
