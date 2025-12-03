@@ -52,9 +52,9 @@ function Register() {
         <div className="form-container">
           <p className="title">Cadastre-se</p>
           <div className="form">
-            <input type="text" className='input' placeholder='Nome de usuário' onChange={(event) => setinputNomeUsuario(event.target.value)}/>
-            <input type="email" className="input" placeholder="Email" onChange ={(event) => setinputEmail(event.target.value)} />
-            <input type="password" className="input" placeholder="Senha" onChange={(event) => setinputSenha(event.target.value)} />
+            <input type="text" className='input' placeholder='Nome de usuário' value={inputNomeUsuario} onChange={(event) => setinputNomeUsuario(event.target.value)}/>
+            <input type="email" className="input" placeholder="Email" value={inputEmail} onChange ={(event) => setinputEmail(event.target.value)} />
+            <input type="password" className="input" placeholder="Senha" value={inputSenha} onChange={(event) => setinputSenha(event.target.value)} />
             <button className="form-btn" onClick={cadastrarCliente}>Cadastrar-se</button>
           </div>
           <p className="sign-up-label">
