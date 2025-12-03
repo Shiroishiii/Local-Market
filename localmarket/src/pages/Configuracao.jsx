@@ -1,11 +1,13 @@
 import React from 'react'
 import './Configuracao.css';
-
+import Navbar2 from '../components/Navbar2'
 
 function Configuracao() {
 
 
   return (
+    <div>
+      <Navbar2/>
     <div className='config-continer'>
       <div className='top-container'>
       </div>
@@ -20,6 +22,7 @@ function Configuracao() {
         <button  className='button-location'>Cadastro de locatário</button>
       </div>
     </div>
+    </div> 
   )
 }
 
