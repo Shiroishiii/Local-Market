@@ -20,19 +20,13 @@ function Perfil() {
       <div className='sidebar-container'>
         <h1 className='title-perfil'>LOCAL <span className='title-highlight'>MARKET</span></h1>
         <div className='sidebar-options'>
-          <Link to={'/historicotransacoes'} className='link-das-coisas'><button className='button-sidebar'><p>Histórico de transações</p>
+          <Link to={'/controleFinanceiro'} className='link-das-coisas'><button className='button-sidebar'><p>Controle Financeiro</p>
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
             ></path>
           </button></Link>
-          <Link to={'/registrofinanceiro'} className='link-das-coisas'><button className='button-sidebar'><p>Registro Financeiro</p>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path></button></Link>
           <Link to={'/carrinho'} className='link-das-coisas'> <button className='button-sidebar'><p>Carrinho</p>
             <path
               stroke-linecap="round"
