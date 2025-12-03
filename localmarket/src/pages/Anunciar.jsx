@@ -12,7 +12,7 @@ export default function Anunciar() {
     const [imagens, setImagens] = useState([]);
     const [video, setVideo] = useState(null);
 
-    // ⬇ Busca cidade/bairro automaticamente
+    //  Busca cidade/bairro automaticamente
     const buscarCep = async (valor) => {
         setCep(valor);
 
@@ -27,22 +27,21 @@ export default function Anunciar() {
         }
     };
 
-    // ⬇ Salva imagens selecionadas
+    //  Salva imagens selecionadas
     const handleImagens = (e) => {
         const files = Array.from(e.target.files);
         setImagens(files.map((file) => URL.createObjectURL(file)));
     };
 
-    // ⬇ Salva vídeo
+    //  Salva vídeo
     const handleVideo = (e) => {
         const file = e.target.files[0];
         if (file) setVideo(URL.createObjectURL(file));
     };
 
-    // ⬇ Enviar produto
+    //  Enviar produto
     const enviarItem = () => {
         alert("🚀 Produto pronto para enviar ao backend!");
-        // Depois conectaremos ao seu backend
     };
 
     return (
@@ -51,7 +50,7 @@ export default function Anunciar() {
             {/* COLUNA ESQUERDA — FORMULÁRIO COM SCROLL */}
             <div className="form-area">
 
-                <h2>Anunciar Produto</h2>
+                <h2 className="anunciar-produto">Anunciar Produto</h2>
 
                 <label>Título</label>
                 <input value={titulo} onChange={(e) => setTitulo(e.target.value)} />
@@ -73,7 +72,7 @@ export default function Anunciar() {
                 <label>Preço da diária</label>
                 <input
                     type="number"
-                    value={preco}
+                    value={preco} min="0"
                     onChange={(e) => setPreco(e.target.value)}
                 />
 
@@ -96,13 +95,13 @@ export default function Anunciar() {
                 <label>Vídeo</label>
                 <input type="file" accept="video/*" onChange={handleVideo} />
 
-                <button onClick={enviarItem}>Publicar</button>
+                <button className="button-publicar" onClick={enviarItem}>Publicar</button>
             </div>
 
-            {/* COLUNA DIREITA — PRÉ-VISUALIZAÇÃO ESTILO FACEBOOK */}
+            {/* COLUNA DIREITA — PRÉ-VISUALIZAÇÃO  */}
             <div className="preview-area">
 
-                <h2>Pré-visualização</h2>
+                <h2 className="pre-vizu-d">Pré-visualização</h2>
 
                 {/* Imagem / vídeo maior à direita */}
                 <div className="preview-media">
@@ -122,7 +121,7 @@ export default function Anunciar() {
                     ))}
                 </div>
 
-                {/* Informações abaixo — igual Facebook */}
+                {/* Informações abaixo */}
                 <div className="preview-info">
                     <h3>{titulo || "Título do produto"}</h3>
                     <p>{descricao || "Descrição aparecerá aqui."}</p>

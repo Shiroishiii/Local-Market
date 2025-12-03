@@ -1,14 +1,20 @@
 .anunciar-container {
     display: flex;
     height: 100vh;
-    background: #f1f1f1;
+    background: #9c9797;
 }
 
 /* ----- COLUNA ESQUERDA ----- */
+
+.anunciar-produto{
+    color: white;
+    justify-content: center;
+
+}
 .form-area {
     width: 40%;
     overflow-y: scroll;
-    background: white;
+    background: var(--cor-azul-marinho);
     padding: 20px;
     border-right: 1px solid #ccc;
 }
@@ -17,7 +23,12 @@
     font-weight: bold;
     margin-top: 10px;
     display: block;
+    color: aliceblue;
 }
+ .pre-vizu-d{
+    font-size: 30px;
+    text-align: center;
+ }
 
 .form-area input,
 .form-area textarea,
@@ -27,20 +38,25 @@
     margin-top: 5px;
     border-radius: 6px;
     border: 1px solid #aaa;
+    color: white;
+
 }
 
 .form-area button {
     margin-top: 15px;
     width: 100%;
     padding: 14px;
-    background: #1877f2;
+    background: #133057;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 17px;
+
+
 }
 
-/* ----- COLUNA DIREITA PREVIEW ----- */
+/*-- Lado Direito --*/
+
 .preview-area {
     width: 60%;
     padding: 20px;
@@ -53,13 +69,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+
+
 }
 
 .preview-media img,
 .preview-media video {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .preview-placeholder {
@@ -80,10 +100,11 @@
     border-radius: 6px;
 }
 
-/* ----- INFO TEXTO ----- */
 .preview-info {
     margin-top: 15px;
     padding: 10px;
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: 6px;
+
 }
+
