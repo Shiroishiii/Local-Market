@@ -77,11 +77,11 @@ export default function Anunciar() {
 
                 <h2 className="anunciar-produto">Anunciar Produto</h2>
 
-                <label>Título</label>
+                <label >Título</label>
                 <input value={titulo} onChange={(e) => setTitulo(e.target.value)} />
 
                 <label>Descrição</label>
-                <textarea
+                <textarea 
                     value={descricao}
                     onChange={(e) => setDescricao(e.target.value)}
                 />
@@ -89,9 +89,12 @@ export default function Anunciar() {
                 <label>Categoria</label>
                 <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                     <option value="">Selecione</option>
+                    <option value="Veículos">Veículos</option>
                     <option value="Ferramentas">Ferramentas</option>
-                    <option value="Construção">Construção</option>
-                    <option value="Eletrônicos">Eletrônicos</option>
+                    <option value="Vestimentas">Vestimentas</option>
+                    <option value="Espaço kids">Espaço kids</option>
+                    <option value="Máquinas">Máquinas</option>
+                    <option value="Salão de festa">Salão de festa</option>
                 </select>
 
                 <label>Preço da diária</label>
@@ -102,20 +105,20 @@ export default function Anunciar() {
                 />
 
                 <label>CEP</label>
-                <input
+                <input className="inputs"
                     value={cep}
                     onChange={(e) => buscarCep(e.target.value)}
                     maxLength={8}
                 />
 
                 <label>Cidade</label>
-                <input value={cidade} readOnly />
+                <input className="inputs" value={cidade} readOnly />
 
                 <label>Bairro</label>
                 <input value={bairro} readOnly />
 
                 <label htmlFor=""> Telefone</label>
-                <input type="text" 
+                <input type="text" className="inputs"
                 value={telefone}
                 onChange={(e) => setTelefone(e.target.value)}/>
 
