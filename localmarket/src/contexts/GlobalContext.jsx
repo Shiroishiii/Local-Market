@@ -12,12 +12,16 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  useEffect(() =>{
+    console.log(isSidebarOpen)
+  },[isSidebarOpen])
   // Lista de produtos vindos do backend (ou combinados com defaults na UI)
   const [produtos, setProdutos] = useState([]);
 
   // Toggle sidebar simples
-  const toggleSidebar = () => setIsSidebarOpen((v) => !v);
+  function toggleSidebar(){
+    setIsSidebarOpen((v) => !v);
+  } 
 
   // Carrega produtos do backend ao montar
   useEffect(() => {
