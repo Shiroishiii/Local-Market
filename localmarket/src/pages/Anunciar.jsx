@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Anunciar.css";
-import axios from 'axios'
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function Anunciar() {
     const [titulo, setTitulo] = useState("");
@@ -10,11 +11,11 @@ export default function Anunciar() {
     const [cidade, setCidade] = useState("");
     const [bairro, setBairro] = useState("");
     const [cep, setCep] = useState("");
-    const [telefone, setTelefone] = useState('')
+    const [telefone, setTelefone] = useState("");
     const [imagens, setImagens] = useState([]);
-    const [video, setVideo] = useState(null);
-
-    //  Busca cidade/bairro automaticamente
+    const [loading, setLoading] = useState(false);
+    const  navigate = useNavigate()
+    // Buscar cidade e bairro pelo CEP
     const buscarCep = async (valor) => {
         setCep(valor);
 
@@ -29,44 +30,46 @@ export default function Anunciar() {
         }
     };
 
-    //  Salva imagens selecionadas
+    // Imagens (máximo 5)
     const handleImagens = (e) => {
         const files = Array.from(e.target.files);
-        setImagens(files.map((file) => URL.createObjectURL(file)));
+
+        if (files.length > 5) {
+            alert("Você só pode enviar no máximo 5 imagens.");
+            return;
+        }
+
+        const previews = files.map((file) => URL.createObjectURL(file));
+        setImagens(previews);
     };
 
-    //  Salva vídeo
-    const handleVideo = (e) => {
-        const file = e.target.files[0];
-        if (file) setVideo(URL.createObjectURL(file));
-    };
-
-    //  Enviar produto
+    // Enviar item
     const enviarItem = async () => {
-           try{
-      const item = {
-        titulo: titulo,
-        descricao: descricao,
-        categoria: categoria,
-        preco: preco,
-        cidade: cidade,
-        bairro: bairro,
-        cep: cep,
-        telefone: telefone
-      };
-      console.log("Dados enviados para API", item);
-      
-      const response = await axios.post('http://localhost:3001/item',item);
-      console.log("res api", response.status);
-      
-      if(response.status === 201){
-          alert("🚀 Produto enviado ao backend!");
-      } 
-        }catch (error) {
-        console.error('Erro ao adicionar item:', error);
-      }
+        try {
+            const item = {
+                titulo,
+                descricao,
+                categoria,
+                preco,
+                cidade,
+                bairro,
+                cep,
+                telefone
+            };
 
-    
+            console.log("Dados enviados para API", item);
+
+            const response = await axios.post('http://localhost:3001/item', item);
+            console.log("res api", response.status);
+
+            if (response.status === 201) {
+                alert("Item enviado ao backend!")
+                 navigate('/');
+            }
+
+        } catch (error) {
+            console.error('Erro ao adicionar item:', error);
+        }
     };
 
     return (
@@ -75,9 +78,9 @@ export default function Anunciar() {
             {/* COLUNA ESQUERDA — FORMULÁRIO COM SCROLL */}
             <div className="form-area">
 
-                <h2 className="anunciar-produto">Anunciar Produto</h2>
+                <h2 className="anunciar-produto">Anunciar Item</h2>
 
-                <label >Título</label>
+                <label>Título</label>
                 <input value={titulo} onChange={(e) => setTitulo(e.target.value)} />
 
                 <label>Descrição</label>
@@ -100,12 +103,14 @@ export default function Anunciar() {
                 <label>Preço da diária</label>
                 <input
                     type="number"
-                    value={preco} min="0"
+                    value={preco}
+                    min="0"
                     onChange={(e) => setPreco(e.target.value)}
                 />
 
                 <label>CEP</label>
-                <input className="inputs"
+                <input
+                    className="inputs"
                     value={cep}
                     onChange={(e) => buscarCep(e.target.value)}
                     maxLength={8}
@@ -117,46 +122,48 @@ export default function Anunciar() {
                 <label>Bairro</label>
                 <input value={bairro} readOnly />
 
-                <label htmlFor=""> Telefone</label>
-                <input type="text" className="inputs"
-                value={telefone}
-                onChange={(e) => setTelefone(e.target.value)}/>
+                <label>Telefone</label>
+                <input
+                    type="text"
+                    className="inputs"
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
+                />
 
-                <label>Imagens (máx 10)</label>
-                <input type="file" multiple accept="image/*" onChange={handleImagens} />
+                <label>Imagens (máx 5)</label>
+                <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleImagens}
+                />
 
-                <label>Vídeo</label>
-                <input type="file" accept="video/*" onChange={handleVideo} />
-
-                <button className="button-publicar" onClick={enviarItem}>Publicar</button>
+                <button className="button-publicar" onClick={enviarItem}  >
+                    Publicar
+                </button>
             </div>
 
-            {/* COLUNA DIREITA — PRÉ-VISUALIZAÇÃO  */}
+            {/* COLUNA DIREITA — PRÉ-VISUALIZAÇÃO */}
             <div className="preview-area">
 
                 <h2 className="pre-vizu-d">Pré-visualização</h2>
 
-                {/* Imagem / vídeo maior à direita */}
                 <div className="preview-media">
-                    {video ? (
-                        <video controls src={video} />
-                    ) : imagens.length > 0 ? (
+                    {imagens.length > 0 ? (
                         <img src={imagens[0]} alt="preview" />
                     ) : (
-                        <div className="preview-placeholder">Nenhuma mídia selecionada</div>
+                        <div className="preview-placeholder">Nenhuma imagem selecionada</div>
                     )}
                 </div>
 
-                {/* Miniaturas embaixo */}
                 <div className="preview-thumbs">
                     {imagens.map((img, i) => (
                         <img key={i} src={img} />
                     ))}
                 </div>
 
-                {/* Informações abaixo */}
                 <div className="preview-info">
-                    <h3>{titulo || "Título do produto"}</h3>
+                    <h3>{titulo || "Título do item"}</h3>
                     <p>{descricao || "Descrição aparecerá aqui."}</p>
                     <strong>{preco ? `R$ ${preco}/dia` : "Preço da diária"}</strong>
                     <p>{bairro && `${bairro}, ${cidade}`}</p>

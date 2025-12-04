@@ -16,14 +16,14 @@
     overflow-y: scroll;
     background: var(--cor-azul-marinho);
     padding: 20px;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #000000;
 }
 
 .form-area label {
     font-weight: bold;
     margin-top: 10px;
     display: block;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
 }
  .pre-vizu-d{
     font-size: 30px;
@@ -38,7 +38,7 @@
     margin-top: 5px;
     border-radius: 6px;
     border: 1px solid #aaa;
-    color: white;
+    color: rgb(0, 0, 0);
 
 }
 
@@ -46,8 +46,8 @@
     margin-top: 15px;
     width: 100%;
     padding: 14px;
-    background: #133057;
-    color: white;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 8px;
     font-size: 17px;
@@ -104,9 +104,9 @@
     margin-top: 15px;
     padding: 10px;
     background: rgb(255, 255, 255);
-    border-radius: 6px;
-
+    border-radius: 6px;    
 }
 .inputs{
-    color: black;
+    color: rgb(0, 0, 0);
+
 }
