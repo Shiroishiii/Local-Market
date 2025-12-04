@@ -232,6 +232,21 @@ app.get('/aluguel/:id', async (req, res) => {
     }
 });
 
+// essa é a parte do julio
+app.get('/aluguelporusuario/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await pool.query('SELECT usuario.nome AS nome_usuario,item.titulo AS nome_item,item.rua AS rua_item,aluguel.data_inicio,aluguel.data_fim,aluguel.valor_total FROM aluguel JOIN usuario ON aluguel.usuario_id = usuario.id_usuario JOIN item ON aluguel.item_id = item.id_item WHERE usuario.id_usuario = ?;', [id]);
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Aluguel não encontrado' });
+        }
+        res.json(rows);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao buscar aluguel' });
+    }
+});
+
 app.post('/aluguel', async (req, res) => {
     const { data_inicio, data_fim, valor_total, status, usuario_id, item_id} = req.body;
     try {
@@ -439,7 +454,7 @@ app.delete('/pagamento/:id', async (req, res) => {
 });
 
 app.listen(3001, () => {
-    console.log('Servidor rodando na porta 3000');
+    console.log('Servidor rodando na porta 3001');
 });
 
 
