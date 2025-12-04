@@ -1,8 +1,9 @@
 import Navbar2 from '../components/Navbar2'
 import './Login.css'
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { GlobalContext } from '../contexts/GlobalContext'
 
 function Login() {
   const [inputEmail, setinputEmail] = useState('')
@@ -11,6 +12,7 @@ function Login() {
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const { setUsuarioLogado} = useContext(GlobalContext)
 
   const navigate = useNavigate();
 
@@ -50,6 +52,7 @@ function Login() {
       console.log("Login OK:", res.data);
 
       setNomeUsuario(res.data.nome);
+      setUsuarioLogado(res.data);
       setShowModal(true);
 
       setTimeout(() => {

@@ -7,6 +7,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',      // Altere para o nome do seu user no MySQL
     password: 'senai',    // Altere para a senha correta
+    // password: '2008isac',    // Altere para a senha correta
     database: 'local_market',
     waitForConnections: true,
     connectionLimit: 10,
@@ -42,11 +43,11 @@ app.get('/usuario/:id', async (req, res) => {
 
 app.post('/usuario', async (req, res) => {
     console.log('Corpo recebido: ', req.body);
-    const { nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo } = req.body;
+    const { nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
-            [nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo]
+            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
+            [nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo]
         );
         const [novoCliente] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [result.insertId]);
         res.status(201).json(novoCliente[0]);
@@ -150,11 +151,11 @@ app.get('/item/:id', async (req, res) => {
 
 
 app.post('/item', async (req, res) => {
-    const {titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
+    const {titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
     try {
         const [result] = await pool.query(
             'INSERT INTO item (titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id ]
+            [titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id ]
         );
         const [novoItem] = await pool.query('SELECT * FROM item WHERE id_item = ?', [result.insertId]);
         res.status(201).json(novoItem[0]);
@@ -167,11 +168,11 @@ app.post('/item', async (req, res) => {
 
 app.put('/item/:id', async (req, res) => {
     const { id } = req.params;
-    const { descricao, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone } = req.body;
+    const { descricao, preco, status, cidade, rua, bairro, estado, cep, telefone } = req.body;
     try {
         const [result] = await pool.query(
             'UPDATE item SET descricao = ?, preco_diaria = ?, status = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_item = ?',
-            [descricao, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone]
+            [descricao, preco, status, cidade, rua, bairro, estado, cep, telefone]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Item não encontrado' });
@@ -463,28 +464,5 @@ app.listen(3001, () => {
 
 
 
-// SALVANDO CEP
-
-app.put("/usuario/endereco", (req, res) => {
-    const { id_usuario, cidade, rua, bairro, estado, cep } = req.body;
-  
-    const sql = `
-      UPDATE usuario
-      SET cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?
-      WHERE id_usuario = ?
-    `;
-  
-    connection.query(
-      sql,
-      [cidade, rua, bairro, estado, cep, id_usuario],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ erro: "Erro ao salvar endereço" });
-        }
-  
-        res.json({ msg: "Endereço atualizado com sucesso!" });
-      }
-    );
-  });
+// LOCATARIO
   
