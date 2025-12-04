@@ -9,13 +9,17 @@ function Register() {
     const [inputNomeUsuario, setinputNomeUsuario] = useState('')
     const [inputEmail, setinputEmail] = useState('')
     const [inputSenha, setinputSenha] = useState('')
+    const [inputCPF, setinputCPF] = useState('')
+    const [inputTelefone, setinputTelefone] = useState('')
 
   const cadastrarCliente = async () => {
     try{
       const cliente = {
         nome: inputNomeUsuario.trim(),
         email: inputEmail.trim(),
-        senha: inputSenha
+        senha: inputSenha,
+        cpf: inputCPF,
+        telefone: inputTelefone
       };
       console.log("Dados enviados para API", cliente);
       
@@ -55,6 +59,8 @@ function Register() {
             <input type="text" className='input' placeholder='Nome de usuário' value={inputNomeUsuario} onChange={(event) => setinputNomeUsuario(event.target.value)}/>
             <input type="email" className="input" placeholder="Email" value={inputEmail} onChange ={(event) => setinputEmail(event.target.value)} />
             <input type="password" className="input" placeholder="Senha" value={inputSenha} onChange={(event) => setinputSenha(event.target.value)} />
+            <input type="" className="input" placeholder="cpf" value={inputCPF} onChange={(event) => setinputCPF(event.target.value)} />
+            <input type="" className="input" placeholder="telfone" value={inputTelefone} onChange={(event) => setinputTelefone(event.target.value)} />
             <button className="form-btn" onClick={cadastrarCliente}>Cadastrar-se</button>
           </div>
           <p className="sign-up-label">
