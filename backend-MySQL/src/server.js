@@ -7,6 +7,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',      // Altere para o nome do seu user no MySQL
     password: 'senai',    // Altere para a senha correta
+    // password: '2008isac',    // Altere para a senha correta
     database: 'local_market',
     waitForConnections: true,
     connectionLimit: 10,
@@ -42,11 +43,11 @@ app.get('/usuario/:id', async (req, res) => {
 
 app.post('/usuario', async (req, res) => {
     console.log('Corpo recebido: ', req.body);
-    const { nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo } = req.body;
+    const { nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
-            [nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo]
+            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
+            [nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo]
         );
         const [novoCliente] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [result.insertId]);
         res.status(201).json(novoCliente[0]);
@@ -226,6 +227,21 @@ app.get('/aluguel/:id', async (req, res) => {
             return res.status(404).json({ error: 'Aluguel não encontrado' });
         }
         res.json(rows[0]);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao buscar aluguel' });
+    }
+});
+
+// essa é a parte do julio
+app.get('/aluguelporusuario/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await pool.query('SELECT usuario.nome AS nome_usuario,item.titulo AS nome_item,item.rua AS rua_item,aluguel.data_inicio,aluguel.data_fim,aluguel.valor_total FROM aluguel JOIN usuario ON aluguel.usuario_id = usuario.id_usuario JOIN item ON aluguel.item_id = item.id_item WHERE usuario.id_usuario = ?;', [id]);
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Aluguel não encontrado' });
+        }
+        res.json(rows);
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ error: 'Erro ao buscar aluguel' });
@@ -439,7 +455,7 @@ app.delete('/pagamento/:id', async (req, res) => {
 });
 
 app.listen(3001, () => {
-    console.log('Servidor rodando na porta 3000');
+    console.log('Servidor rodando na porta 3001');
 });
 
 

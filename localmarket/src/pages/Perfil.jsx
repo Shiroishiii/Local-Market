@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import { useState,useContext } from 'react'
 import './Perfil.css'
 import { Link } from 'react-router-dom'
+import { GlobalContext } from '../contexts/GlobalContext'
 
 function Perfil() {
   const [fotoPerfil, setFotoPerfil] = useState(null);
+  const {usuarioLogado} = useContext(GlobalContext)
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -92,13 +94,13 @@ function Perfil() {
   </div>
       <div className='info-usuario'>
         <div className='principal-info'>
-          <label htmlFor="">nome</label>
-          <label htmlFor="">email</label>
+          <label htmlFor="">{usuarioLogado.nome}</label>
+          <label htmlFor="">Email: {usuarioLogado.email}</label>
+          <label htmlFor="">Telefone: {usuarioLogado.telefone}</label>
         </div>
         <div className='outras-informacao'>
-          <label htmlFor="">telefone</label>
           <label htmlFor="">endereco</label>
-          <label htmlFor="">idade</label>
+          
           
         </div>
       </div>
