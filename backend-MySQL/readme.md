@@ -7,8 +7,8 @@ USE local_market;
 CREATE TABLE usuario(
 id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100),
-email VARCHAR(100) UNIQUE NOT NULL,
-senha VARCHAR(20) NOT NULL,
+email VARCHAR(100) UNIQUE ,
+senha VARCHAR(20),
 cidade VARCHAR(100),
 rua VARCHAR(100),
 bairro VARCHAR(100),
@@ -47,6 +47,8 @@ telefone BIGINT(20),
 usuario_id INT,
 FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario)
 );
+
+SELECT * FROM item;
 
 INSERT INTO item
 (titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id)
@@ -119,4 +121,3 @@ VALUES
 (3, 'Fantasia bonita, mas o tamanho veio um pouco diferente.', '2025-11-15', 3),   -- Fantasia Infantil
 (5, 'As crianças adoraram! Equipamento seguro e bem conservado.', '2025-11-19', 4),-- Brinquedoteca Móvel
 (4, 'Salão espaçoso e organizado, mas o ar-condicionado falhou no final.', '2025-11-24', 5); -- Salão Golden Fest
-

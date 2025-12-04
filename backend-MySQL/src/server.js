@@ -150,11 +150,11 @@ app.get('/item/:id', async (req, res) => {
 
 
 app.post('/item', async (req, res) => {
-    const {titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
+    const {titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
     try {
         const [result] = await pool.query(
             'INSERT INTO item (titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id ]
+            [titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id ]
         );
         const [novoItem] = await pool.query('SELECT * FROM item WHERE id_item = ?', [result.insertId]);
         res.status(201).json(novoItem[0]);
@@ -167,11 +167,11 @@ app.post('/item', async (req, res) => {
 
 app.put('/item/:id', async (req, res) => {
     const { id } = req.params;
-    const { descricao, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone } = req.body;
+    const { descricao, preco, status, cidade, rua, bairro, estado, cep, telefone } = req.body;
     try {
         const [result] = await pool.query(
             'UPDATE item SET descricao = ?, preco_diaria = ?, status = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_item = ?',
-            [descricao, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone]
+            [descricao, preco, status, cidade, rua, bairro, estado, cep, telefone]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Item não encontrado' });
@@ -448,28 +448,5 @@ app.listen(3001, () => {
 
 
 
-// SALVANDO CEP
-
-app.put("/usuario/endereco", (req, res) => {
-    const { id_usuario, cidade, rua, bairro, estado, cep } = req.body;
-  
-    const sql = `
-      UPDATE usuario
-      SET cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?
-      WHERE id_usuario = ?
-    `;
-  
-    connection.query(
-      sql,
-      [cidade, rua, bairro, estado, cep, id_usuario],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ erro: "Erro ao salvar endereço" });
-        }
-  
-        res.json({ msg: "Endereço atualizado com sucesso!" });
-      }
-    );
-  });
+// LOCATARIO
   
