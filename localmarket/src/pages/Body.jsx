@@ -54,42 +54,7 @@ function Body() {
       rating: "4.9",
       description: "Mesa retangular para eventos e festas. Inclui cadeiras e toalha."
     },
-    {
-      id: 4,
-      name: "Aspirador de Pó",
-      price: "15.00",
-      image: "./img/produto.png",
-      seller: "Ana Oliveira",
-      location: "Bairro Alto",
-      locationKey: "bairro-alto",
-      category: "eletrodomesticos",
-      rating: "4.7",
-      description: "Aspirador potente para limpeza doméstica. Filtros higienizados."
-    },
-    {
-      id: 5,
-      name: "Tenda de Camping",
-      price: "50.00",
-      image: "./img/logo.png",
-      seller: "Carlos Mendes",
-      location: "Zona Sul",
-      locationKey: "zona-sul",
-      category: "lazer",
-      rating: "4.9",
-      description: "Tenda para 4 pessoas, impermeável e resistente. Inclui estacas e cordas."
-    },
-    {
-      id: 6,
-      name: "Câmera DSLR",
-      price: "80.00",
-      image: "./img/logo.png",
-      seller: "Fernanda Lima",
-      location: "Vila Madalena",
-      locationKey: "vila-madalena",
-      category: "profissional",
-      rating: "4.5",
-      description: "Câmera profissional para eventos e fotografia. Inclui lente e cartão de memória."
-    }
+
   ]
 
   // Função para filtrar produtos
