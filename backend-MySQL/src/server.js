@@ -7,6 +7,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',      // Altere para o nome do seu user no MySQL
     password: 'senai',    // Altere para a senha correta
+    // password: '2008isac',    // Altere para a senha correta
     database: 'local_market',
     waitForConnections: true,
     connectionLimit: 10,
@@ -42,11 +43,11 @@ app.get('/usuario/:id', async (req, res) => {
 
 app.post('/usuario', async (req, res) => {
     console.log('Corpo recebido: ', req.body);
-    const { nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo } = req.body;
+    const { nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
-            [nome, email, senha, cidade, rua, bairro, estado, cep, cnpj, telefone, tipo]
+            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
+            [nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo]
         );
         const [novoCliente] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [result.insertId]);
         res.status(201).json(novoCliente[0]);
