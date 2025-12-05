@@ -1,4 +1,3 @@
-Base do nosso banco de dados local:
 
 CREATE DATABASE local_market;
 
@@ -50,13 +49,13 @@ FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario)
 SELECT * FROM item;
 
 INSERT INTO item
-(titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id)
+(titulo, descricao, categoria, preco_diaria, cidade, rua, bairro, estado, cep, telefone, usuario_id)
 VALUES
-('Gol 1.6 Completo','Carro popular, econômico e confortável, ideal para viagens curtas e longas.' ,'Veículos','150.00 ', 'Em bom estado' ,'Campinas','Rua das Acácias, 120','Jardim das Flores' ,'SP','04567210' ,'11998764532', 1),
-('Furadeira Bosch 600W', 'Furadeira potente para uso doméstico e profissional, com ajuste de velocidade.', 'Ferramentas', 35.00, 'Novo','São José', 'Rua Pedro Álvares, 45', 'Centro', 'RJ', '22045380', '21987652345', 2),
-('Fantasia de Super-Herói Infantil', 'Fantasia completa com capa e máscara, tamanhos de 4 a 8 anos.', 'Vestimentas', 20.00, 'Em avaliação','Belo Horizonte', 'Rua São Bento, 300', 'Vila Nova', 'MG', '30190120', '31996547723', 3),
-('Brinquedoteca Móvel', 'Espaço kids inflável com escorregador e piscina de bolinhas, ideal para festas.', 'Espaço kids', 180.00, 'Danificado', 'Palhoça', 'Rua dos Ipês, 77', 'Parque das Árvores', 'PR', '81540200', '41999018899', 4),
-('Salão Golden Fest', 'Salão de festa climatizado com capacidade para 200 pessoas, inclui mesas e cadeiras.', 'Salão de festa', 850.00, 'Em manutenção','Angelina', 'Avenida Central, 999', 'Jardim América', 'RS', '90120000', '51998001122', 5);
+('Gol 1.6 Completo','Carro popular, econômico e confortável, ideal para viagens curtas e longas.' ,'Veículos','150.00 ','Campinas','Rua das Acácias, 120','Jardim das Flores' ,'SP','04567210' ,'11998764532', 1),
+('Furadeira Bosch 600W', 'Furadeira potente para uso doméstico e profissional, com ajuste de velocidade.', 'Ferramentas', 35.00, 'São José', 'Rua Pedro Álvares, 45', 'Centro', 'RJ', '22045380', '21987652345', 2),
+('Fantasia de Super-Herói Infantil', 'Fantasia completa com capa e máscara, tamanhos de 4 a 8 anos.', 'Vestimentas', 20.00, 'Belo Horizonte', 'Rua São Bento, 300', 'Vila Nova', 'MG', '30190120', '31996547723', 3),
+('Brinquedoteca Móvel', 'Espaço kids inflável com escorregador e piscina de bolinhas, ideal para festas.', 'Espaço kids', 180.00,  'Palhoça', 'Rua dos Ipês, 77', 'Parque das Árvores', 'PR', '81540200', '41999018899', 4),
+('Salão Golden Fest', 'Salão de festa climatizado com capacidade para 200 pessoas, inclui mesas e cadeiras.', 'Salão de festa', 850.00, 'Angelina', 'Avenida Central, 999', 'Jardim América', 'RS', '90120000', '51998001122', 5);
 
 CREATE TABLE aluguel(
 id_aluguel INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -73,11 +72,11 @@ FOREIGN KEY (item_id) REFERENCES item (id_item)
 INSERT INTO aluguel
 (data_inicio, data_fim, valor_total,usuario_id, item_id)
 VALUES
-('2025-11-05 09:00:00', '2025-11-07 18:00:00', 300.00,1, 1),
-('2025-11-10 08:00:00', '2025-11-10 18:00:00', 35.00, 2, 2),
-('2025-11-12 14:00:00', '2025-11-14 20:00:00', 40.00, 3, 3),
+('2025-11-05 09:00:00', '2025-11-07 18:00:00', 300.00, 1, 1),
+('2025-11-10 08:00:00', '2025-11-10 18:00:00', 35.00,  2, 2),
+('2025-11-12 14:00:00', '2025-11-14 20:00:00', 40.00,  3, 3),
 ('2025-11-18 09:00:00', '2025-11-18 17:00:00', 180.00, 4, 4),
-('2025-11-22 19:00:00', '2025-11-23 03:00:00', 850.00,5, 5);
+('2025-11-22 19:00:00', '2025-11-23 03:00:00', 850.00, 5, 5);
 
 
 CREATE TABLE pagamento(
@@ -119,3 +118,4 @@ VALUES
 (3, 'Fantasia bonita, mas o tamanho veio um pouco diferente.', '2025-11-15', 3),   -- Fantasia Infantil
 (5, 'As crianças adoraram! Equipamento seguro e bem conservado.', '2025-11-19', 4),-- Brinquedoteca Móvel
 (4, 'Salão espaçoso e organizado, mas o ar-condicionado falhou no final.', '2025-11-24', 5); -- Salão Golden Fest
+
