@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: var(--cor-branco);
+    background-color: var(--cor-cinza-claro);
     min-height: calc(70px - 100vh);
     overflow: hidden;
 }
