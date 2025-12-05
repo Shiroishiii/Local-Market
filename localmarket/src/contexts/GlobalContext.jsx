@@ -14,7 +14,7 @@ export const GlobalContext = createContext();
 export const GlobalContextProvider = ({ children }) => {
 
   const [usuarioLogado, setUsuarioLogado] = useState({
-    id_usuario: 12,
+    id_usuario: 6,
     nome: "Maria",
     email: "Maria@gmail.com",
     senha: "1",
@@ -38,6 +38,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // Lista de produtos vindos do backend (ou combinados com defaults na UI)
 
+  const [produtos,setProdutos] = useState([])
 
   const [item, setItem] = useState([]);
 

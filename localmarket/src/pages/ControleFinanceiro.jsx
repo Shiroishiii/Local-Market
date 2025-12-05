@@ -1,17 +1,17 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import './ControleFinanceiro.css'
 import Navbar2 from '../components/Navbar2'
-
+import { GlobalContext } from '../contexts/GlobalContext'
 import ExtratoCard from "../components/ExtratoCard";
 
 function ControleFinanceiro() {
-
-  const [transacoes, setTransacoes] = useState('');
+   const {usuarioLogado} = useContext(GlobalContext)
+  const [transacoes, setTransacoes] = useState([]);
 
   async function fetchDadosUser() {
     try {
-      const res = await fetch("http://localhost:3001/aluguelporusuario/6")
+      const res = await fetch(`http://localhost:3001/aluguelporusuario/${usuarioLogado.id_usuario}`)
       const data = await res.json()
 
       console.log("retorno da api", data)
@@ -47,9 +47,10 @@ function ControleFinanceiro() {
           ) : (
             transacoes.map(t => (
               <ExtratoCard
-                key={t.nome_usuario}
+                key={t.id_aluguel}
                 nome_item={t.nome_item}
                 valor_total={Number(t.valor_total)}
+                data_inicio={t.data_inicio}
               />
             ))
           )}

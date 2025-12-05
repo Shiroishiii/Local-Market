@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./Anunciar.css";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from '../contexts/GlobalContext';
+
 
 export default function Anunciar() {
     const [titulo, setTitulo] = useState("");
@@ -16,6 +18,9 @@ export default function Anunciar() {
     const [telefone, setTelefone] = useState("");
     const [imagens, setImagens] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {usuarioLogado} = useContext(GlobalContext)
+
+
     const  navigate = useNavigate()
     // Buscar cidade e bairro pelo CEP
     const buscarCep = async (valor) => {
@@ -51,7 +56,7 @@ export default function Anunciar() {
     // Enviar item
     const enviarItem = async () => {
         try {
-            const id_usuario = localStorage.getItem('id_usuario')
+            // const id_usuario = localStorage.getItem('id_usuario')
             const item = {
                 titulo,
                 descricao,
@@ -63,7 +68,7 @@ export default function Anunciar() {
                 estado,
                 cep,
                 telefone,
-                usuario_id: id_usuario,
+                usuario_id: usuarioLogado.id_usuario
             };
             
             console.log("Dados enviados para API", item);

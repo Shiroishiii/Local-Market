@@ -227,7 +227,7 @@ app.get('/aluguel/:id', async (req, res) => {
 app.get('/aluguelporusuario/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const [rows] = await pool.query('SELECT usuario.nome AS nome_usuario,item.titulo AS nome_item,item.rua AS rua_item,aluguel.data_inicio,aluguel.data_fim,aluguel.valor_total FROM aluguel JOIN usuario ON aluguel.usuario_id = usuario.id_usuario JOIN item ON aluguel.item_id = item.id_item WHERE usuario.id_usuario = ?;', [id]);
+        const [rows] = await pool.query('SELECT aluguel.id_aluguel,usuario.nome AS nome_usuario,item.titulo AS nome_item,item.rua AS rua_item,aluguel.data_inicio,aluguel.data_fim,aluguel.valor_total FROM aluguel JOIN usuario ON aluguel.usuario_id = usuario.id_usuario JOIN item ON aluguel.item_id = item.id_item WHERE usuario.id_usuario = ?;', [id]);
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Aluguel não encontrado' });
         }
