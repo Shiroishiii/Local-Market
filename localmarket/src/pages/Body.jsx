@@ -29,6 +29,45 @@ function Body() {
       })
       .catch(err => console.error('Erro: ', err))
   }, [])
+  const allProducts = [
+    {
+      id: 1,
+      name: "Furadeira Elétrica",
+      price: "25.00",
+      image: "./img/produto.png",
+      seller: "João Silva",
+      location: "Centro",
+      locationKey: "centro",
+      category: "ferramentas",
+      rating: "4.8",
+      description: "Furadeira potente para uso doméstico e profissional. Inclui brocas e acessórios."
+    },
+    {
+      id: 2,
+      name: "Bicicleta Mountain Bike",
+      price: "40.00",
+      image: "./img/produto.png",
+      seller: "Maria Santos",
+      location: "Vila Nova",
+      locationKey: "vila-nova",
+      category: "lazer",
+      rating: "4.6",
+      description: "Bicicleta para trilhas e passeios urbanos. Freios em perfeito estado."
+    },
+    {
+      id: 3,
+      name: "Mesa de Festa (8 lugares)",
+      price: "35.00",
+      image: "./img/produto.png",
+      seller: "Pedro Costa",
+      location: "Jardim das Flores",
+      locationKey: "jardim-das-flores",
+      category: "eventos",
+      rating: "4.9",
+      description: "Mesa retangular para eventos e festas. Inclui cadeiras e toalha."
+    },
+
+  ]
 
   // Função para filtrar produtos
   const filteredProducts = useMemo(() => {
@@ -133,6 +172,43 @@ return (
           <p>Tente ajustar os filtros ou fazer uma nova busca.</p>
         </div>
       )}
+      return true
+    })
+  }, [filters])
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters)
+  }
+
+  const handleSearchChange = (searchTerm) => {
+    setFilters(prev => ({ ...prev, search: searchTerm }))
+  }
+
+
+  return (
+
+    <div className='body-container'>
+      <Navbar 
+        onSearchChange={handleSearchChange}
+        onFilterChange={handleFilterChange}/>
+      <FilterBar
+        onFilterChange={handleFilterChange}
+        onSearchChange={handleSearchChange}
+        isExpanded={isSidebarOpen}
+        onToggle={toggleSidebar}
+      />
+      <div className='products-grid'>
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <div className='no-results'>
+            <h3>Nenhum item encontrado</h3>
+            <p>Tente ajustar os filtros ou fazer uma nova busca.</p>
+          </div>
+        )}
+      </div>
     </div>
   </div>
 )
