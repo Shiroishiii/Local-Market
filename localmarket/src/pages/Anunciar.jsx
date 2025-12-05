@@ -10,6 +10,8 @@ export default function Anunciar() {
     const [preco, setPreco] = useState("");
     const [cidade, setCidade] = useState("");
     const [bairro, setBairro] = useState("");
+    const [rua, setRua] = useState("")
+    const [estado, setEstado] = useState("")
     const [cep, setCep] = useState("");
     const [telefone, setTelefone] = useState("");
     const [imagens, setImagens] = useState([]);
@@ -18,45 +20,52 @@ export default function Anunciar() {
     // Buscar cidade e bairro pelo CEP
     const buscarCep = async (valor) => {
         setCep(valor);
-
+        
         if (valor.length === 8) {
             const req = await fetch(`https://viacep.com.br/ws/${valor}/json/`);
             const data = await req.json();
-
+            
+            
             if (!data.erro) {
                 setCidade(data.localidade);
                 setBairro(data.bairro);
+                setRua(data.logradouro)
+                setEstado(data.uf)
             }
         }
     };
-
+    
     // Imagens (máximo 5)
     const handleImagens = (e) => {
         const files = Array.from(e.target.files);
-
+        
         if (files.length > 5) {
             alert("Você só pode enviar no máximo 5 imagens.");
             return;
         }
-
+        
         const previews = files.map((file) => URL.createObjectURL(file));
         setImagens(previews);
     };
-
+    
     // Enviar item
     const enviarItem = async () => {
         try {
+            const id_usuario = localStorage.getItem('id_usuario')
             const item = {
                 titulo,
                 descricao,
                 categoria,
                 preco,
                 cidade,
+                rua,
                 bairro,
+                estado,
                 cep,
-                telefone
+                telefone,
+                usuario_id: id_usuario,
             };
-
+            
             console.log("Dados enviados para API", item);
 
             const response = await axios.post('http://localhost:3001/item', item);
@@ -118,6 +127,12 @@ export default function Anunciar() {
 
                 <label>Cidade</label>
                 <input className="inputs" value={cidade} readOnly />
+
+                <label>Estado</label>
+                <input type="text" className="inputs" value={estado} readOnly/>
+
+                <label>Rua</label>
+                <input type="text" className="inputs" value={rua} readOnly/>
 
                 <label>Bairro</label>
                 <input value={bairro} readOnly />
