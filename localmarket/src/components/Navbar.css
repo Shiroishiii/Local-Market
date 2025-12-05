@@ -107,7 +107,6 @@
 
 .span-market{
     color: var(--cor-azul-pastel);
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
     line-height: 1;          
@@ -116,7 +115,6 @@
 }
 .span-local{
     color: var(--cor-branco);
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
     line-height: 1;          

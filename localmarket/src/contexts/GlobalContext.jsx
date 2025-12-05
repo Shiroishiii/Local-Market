@@ -13,6 +13,20 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
 
+  const [carrinho, setCarrinho] = useState([])
+
+  const adicionarCarrinho = (produto) => {
+      setCarrinho((prevCarrinho) => [...prevCarrinho, produto])
+  }
+
+  const removerCarrinho = (produto => {
+    setCarrinho((prevCarrinho) => prevCarrinho.filter((produto) => produto.id_item !== id))
+  }) 
+
+  const limparCarrinho = (produto => {
+    setCarrinho([])
+  })
+
   const [usuarioLogado, setUsuarioLogado] = useState({
     id_usuario: 6,
     nome: "Maria",
@@ -95,6 +109,11 @@ export const GlobalContextProvider = ({ children }) => {
 
         produtos,
         adicionarItem,
+
+        carrinho,
+        adicionarCarrinho,
+        removerCarrinho,
+        limparCarrinho
       }}
     >
       {children}

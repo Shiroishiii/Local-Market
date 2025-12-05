@@ -29,11 +29,11 @@ export default function ProductCard({ product }) {
         {/* Informações do vendedor */}
         <div className="info-seller">
           <span className="name-seller">
-            <img src="./img/user.svg" alt="Foto do vendedor" />
+            <img src="/img/user.svg" alt="Foto do vendedor" />
             {product.usuario_nome || "Usuário"}
           </span>
           <span className="location-seller">
-            <img src="./img/local-black.svg" alt="Localização" />
+            <img src="/img/local-black.svg" alt="Localização" />
             {product.rua}, {product.bairro} - {product.cidade}
           </span>
         </div>
