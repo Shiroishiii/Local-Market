@@ -42,9 +42,6 @@ export const GlobalContextProvider = ({ children }) => {
   function toggleSidebar(){
     setIsSidebarOpen((v) => !v);
   }
-
-  const [produtos, setProdutos] = useState([]);
-
   useEffect(() => {
     async function fetchItems() {
       try {
