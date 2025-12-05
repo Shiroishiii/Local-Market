@@ -117,12 +117,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-
-
-
-
-
-
 //ITEM
 
 app.get('/item', async (req, res) => {
@@ -151,6 +145,8 @@ app.get('/item/:id', async (req, res) => {
 
 
 app.post('/item', async (req, res) => {
+    console.log("cheguei aqui, as informações são: ", req.body);
+    
     const {titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
     try {
         const [result] = await pool.query(
@@ -199,12 +195,6 @@ app.delete('/item/:id', async (req, res) => {
         res.status(500).json({ error: 'Erro ao deletar item' });
     }
 });
-
-
-
-
-
-
 
 
 //ALUGUEL

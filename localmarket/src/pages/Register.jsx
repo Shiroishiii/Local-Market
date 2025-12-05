@@ -1,8 +1,9 @@
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Navbar2 from '../components/Navbar2'
 import './Register.css'
 import { useState } from 'react'
 import axios from 'axios'
+
 
 
 function Register() {
@@ -11,6 +12,7 @@ function Register() {
     const [inputSenha, setinputSenha] = useState('')
     const [inputCPF, setinputCPF] = useState('')
     const [inputTelefone, setinputTelefone] = useState('')
+    const navigate = useNavigate('')
 
   const cadastrarCliente = async () => {
     try{
@@ -27,8 +29,9 @@ function Register() {
       console.log("res api", response.status);
       
       if(response.status === 201){
-        localStorage.setItem("id_usuario", response.data.id_usuario);        
+        (localStorage.setItem("id_usuario", response.data.id_usuario));        
          limparForm()
+         navigate('/login')
       } 
         }catch (error) {
         console.error('Erro ao adicionar cliente:', error);

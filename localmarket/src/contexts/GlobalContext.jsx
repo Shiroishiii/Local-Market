@@ -12,6 +12,7 @@ export const GlobalContext = createContext();
 
 
 export const GlobalContextProvider = ({ children }) => {
+
   const [usuarioLogado, setUsuarioLogado] = useState({
     id_usuario: 12,
     nome: "Maria",
@@ -38,16 +39,16 @@ export const GlobalContextProvider = ({ children }) => {
   // Lista de produtos vindos do backend (ou combinados com defaults na UI)
 
 
+  const [item, setItem] = useState([]);
+
   function toggleSidebar(){
     setIsSidebarOpen((v) => !v);
   }
-
-  const [produtos, setProdutos] = useState([]);
-
   useEffect(() => {
     async function fetchItems() {
       try {
         const res = await fetch("http://localhost:3001/item");
+        if (!res.ok) throw new Error("Falha ao buscar produtos");
         if (!res.ok) throw new Error("Falha ao buscar itens");
         const data = await res.json();
         setProdutos(data || []);
@@ -85,6 +86,9 @@ export const GlobalContextProvider = ({ children }) => {
         isSidebarOpen,
         setIsSidebarOpen,
         toggleSidebar,
+
+        
+
 
         usuarioLogado,
         setUsuarioLogado,
