@@ -49,6 +49,7 @@ export const GlobalContextProvider = ({ children }) => {
     async function fetchItems() {
       try {
         const res = await fetch("http://localhost:3001/item");
+        if (!res.ok) throw new Error("Falha ao buscar produtos");
         if (!res.ok) throw new Error("Falha ao buscar itens");
         const data = await res.json();
         setProdutos(data || []);
