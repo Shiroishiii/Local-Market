@@ -1,55 +1,64 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import './ControleFinanceiro.css'
 import Navbar2 from '../components/Navbar2'
-
-import ExtratoCard from "../components/ExtratoCard"; 
+import { GlobalContext } from '../contexts/GlobalContext'
+import ExtratoCard from "../components/ExtratoCard";
 
 function ControleFinanceiro() {
+   const {usuarioLogado} = useContext(GlobalContext)
+  const [transacoes, setTransacoes] = useState([]);
 
-  const [transacoes, setTransacoes] = useState('');
+  async function fetchDadosUser() {
+    try {
+      const res = await fetch(`http://localhost:3001/aluguelporusuario/${usuarioLogado.id_usuario}`)
+      const data = await res.json()
 
-// useEffect(() => {
-//     // Simulação de dados vindos do banco
-//     const dadosFake = [
-//       { id: 1, descricao: "Locação de bike", valor: -35.00, data: "2025-12-03" },
-//       { id: 2, descricao: "Depósito", valor: 100.00, data: "2025-12-01" }
-//     ];
+      console.log("retorno da api", data)
 
-//     setTransacoes(dadosFake);
-//   }, []);
+      setTransacoes(data)
+      
+    } catch (error) {
+      console.error("deu ruim aqui, não foi possivel conectar com o servidor, chama o samu", error)
+    }
+  }
+
+
+  useEffect(() => {
+    fetchDadosUser()
+  }, []);
 
   return (
-    
-    
+
+
     <div className='controleFinanceiro-container'>
-     
-            <Navbar2/>
-     
 
-        <div className='transacoes-controleFinanceiro'>
+      <Navbar2 />
 
-            <div className='titulo-controleFinaceiro'>
-             <h1>Controle Financeiro</h1>
-            </div>
-            <div className='informacoes-controleFinanceiro'>
-                   {transacoes.length === 0 ? (
-        <p>Nenhuma movimentação encontrada.</p>
-      ) : (
-        transacoes.map(t => (
-          <ExtratoCard
-            key={t.id}
-            descricao={t.descricao}
-            valor={t.valor}
-            data={t.data}
-          />
-        ))
-      )}
-            </div>
-            
-                 
-         
-            </div>
+
+      <div className='transacoes-controleFinanceiro'>
+
+        <div className='titulo-controleFinaceiro'>
+          <h1>Controle Financeiro</h1>
+        </div>
+        <div className='informacoes-controleFinanceiro'>
+          {transacoes.length === 0 ? (
+            <p>Nenhuma movimentação encontrada.</p>
+          ) : (
+            transacoes.map(t => (
+              <ExtratoCard
+                key={t.id_aluguel}
+                nome_item={t.nome_item}
+                valor_total={Number(t.valor_total)}
+                data_inicio={t.data_inicio}
+              />
+            ))
+          )}
+        </div>
+
+
+
+      </div>
 
 
     </div>
