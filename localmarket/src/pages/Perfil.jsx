@@ -23,36 +23,40 @@ function Perfil() {
         <h1 className='title-perfil'>LOCAL <span className='title-highlight'>MARKET</span></h1>
         <div className='sidebar-options'>
           <Link to={'/controleFinanceiro'} className='link-das-coisas'><button className='button-sidebar'><p>Controle Financeiro</p>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+            {/* <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path>
+            ></path> */}
           </button></Link>
           <Link to={'/carrinho'} className='link-das-coisas'> <button className='button-sidebar'><p>Carrinho</p>
-            <path
+            {/* <path
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path></button> </Link>
+            ></path> */}
+            </button> </Link>
           <Link to={'/favoritos'} className='link-das-coisas'><button className='button-sidebar'><p>Favoritos</p>
-            <path
+            {/* <path
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path></button></Link>
+            ></path> */}
+            </button></Link>
           <Link to={'/ajuda'} className='link-das-coisas'><button className='button-sidebar'><p>Ajuda/Suporte</p>
-            <path
+            {/* <path
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path></button></Link>
+            ></path> */}
+            </button></Link>
           <Link to={'/configuracao'} className='link-das-coisas'><button className='button-sidebar'><p>Configuração</p>
-            <path
+            {/* <path
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path></button></Link>
+            ></path> */}
+            </button></Link>
        <Link to="/login" className="link-das-coisas">
   <button className="button-logout">
     <p>Sair</p>
