@@ -147,11 +147,11 @@ app.get('/item/:id', async (req, res) => {
 app.post('/item', async (req, res) => {
     console.log("cheguei aqui, as informações são: ", req.body);
     
-    const {titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
+    const {titulo, descricao, categoria, preco,  cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO item (titulo, descricao, categoria, preco_diaria, status, cidade, rua, bairro, estado, cep, telefone, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [titulo, descricao, categoria, preco, status, cidade, rua, bairro, estado, cep, telefone, usuario_id ]
+            'INSERT INTO item (titulo, descricao, categoria, preco_diaria, cidade, rua, bairro, estado, cep, telefone, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [titulo, descricao, categoria, preco,  cidade, rua, bairro, estado, cep, telefone, usuario_id ]
         );
         const [novoItem] = await pool.query('SELECT * FROM item WHERE id_item = ?', [result.insertId]);
         res.status(201).json(novoItem[0]);
@@ -164,11 +164,11 @@ app.post('/item', async (req, res) => {
 
 app.put('/item/:id', async (req, res) => {
     const { id } = req.params;
-    const { descricao, preco, status, cidade, rua, bairro, estado, cep, telefone } = req.body;
+    const { descricao, preco,  cidade, rua, bairro, estado, cep, telefone } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE item SET descricao = ?, preco_diaria = ?, status = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_item = ?',
-            [descricao, preco, status, cidade, rua, bairro, estado, cep, telefone]
+            'UPDATE item SET descricao = ?, preco_diaria = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_item = ?',
+            [descricao, preco,  cidade, rua, bairro, estado, cep, telefone]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Item não encontrado' });
@@ -239,11 +239,11 @@ app.get('/aluguelporusuario/:id', async (req, res) => {
 });
 
 app.post('/aluguel', async (req, res) => {
-    const { data_inicio, data_fim, valor_total, status, usuario_id, item_id} = req.body;
+    const { data_inicio, data_fim, valor_total, usuario_id, item_id} = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO aluguel (data_inicio, data_fim, valor_total, status, usuario_id, item_id) VALUES (?, ?, ?, ?,?,?)',
-            [data_inicio, data_fim, valor_total, status, usuario_id, item_id]
+            'INSERT INTO aluguel (data_inicio, data_fim, valor_total, usuario_id, item_id) VALUES (?, ?, ?, ?, ?)',
+            [data_inicio, data_fim, valor_total, usuario_id, item_id]
         );
         const [novoAlguel] = await pool.query('SELECT * FROM aluguel WHERE id_aluguel = ?', [result.insertId]);
         res.status(201).json(novoAlguel[0]);
@@ -255,11 +255,11 @@ app.post('/aluguel', async (req, res) => {
 
 app.put('/aluguel/:id', async (req, res) => {
     const { id } = req.params;
-    const {data_inicio, data_fim, valor_total, status} = req.body;
+    const {data_inicio, data_fim, valor_total, } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE usuario SET data_inicio = ?, data_fim = ?, valor_total = ?, status = ? WHERE id_aluguel = ?',
-            [data_inicio, data_fim, valor_total, status]
+            'UPDATE usuario SET data_inicio = ?, data_fim = ?, valor_total = ?,  WHERE id_aluguel = ?',
+            [data_inicio, data_fim, valor_total, ]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Aluguel não encontrado' });
@@ -367,8 +367,6 @@ app.delete('/pagamento/:id', async (req, res) => {
 
 
 
-
-
 // AVALIAÇÃO
 
 
@@ -411,38 +409,26 @@ app.post('/avaliacao', async (req, res) => {
     }
 });
 
-app.put('/pagamento/:id', async (req, res) => {
+
+
+
+
+
+
+app.delete('/avaliacao/:id', async (req, res) => {
     const { id } = req.params;
-    const {data_pagamento, valor, forma_pagamento, status_pagamento} = req.body;
     try {
-        const [result] = await pool.query(
-            'UPDATE usuario SET data_inicio = ?, data_fim = ?, valor_total = ?, status = ? WHERE id_avaliacao = ?',
-            [data_pagamento, valor, forma_pagamento, status_pagamento, id]
-        );
+        const [result] = await pool.query('DELETE FROM avaliacao WHERE id_avaliacao = ?', [id]);
         if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Pagamento não encontrado' });
+            return res.status(404).json({ error: 'avaliacao não encontrado' });
         }
-        const [pagamentoAtualizado] = await pool.query('SELECT * FROM pagamento WHERE id_avaliacao = ?', [id]);
-        res.json(pagamentoAtualizado[0]);
+        res.json({ message: 'avaliacao deletado com sucesso' });
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: 'Erro ao atualizar pagamento' });
+        res.status(500).json({ error: 'Erro ao deletar avaliacao' });
     }
 });
 
-app.delete('/pagamento/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const [result] = await pool.query('DELETE FROM pagamento WHERE id_avaliacao = ?', [id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Pagamento não encontrado' });
-        }
-        res.json({ message: 'Pagamento deletado com sucesso' });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ error: 'Erro ao deletar pagamento' });
-    }
-});
 
 app.listen(3001, () => {
     console.log('Servidor rodando na porta 3001');
