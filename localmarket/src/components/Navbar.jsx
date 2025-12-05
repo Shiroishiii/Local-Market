@@ -1,17 +1,31 @@
 import './Navbar.css'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 import { Link } from 'react-router-dom'
 import InfoCep from './InfoCep'
 
 
-function Navbar() {
-  const { isSidebarOpen, setIsSidebarOpen, toggleSidebar } = useContext(GlobalContext)
-  //   const toggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen)
-  // }
-
+function Navbar( {onSearchChange, onFilterChange}) {
+  const { toggleSidebar } = useContext(GlobalContext)
   const { cepCepado, setCepCepado } = useContext(GlobalContext)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedPrice, setSelectedPrice] = useState('all')
+  const [selectedLocation, setSelectedLocation] = useState('all')
+
+
+
+    const handleSearchChange = (e) => {
+    const value = e.target.value
+    setSearchTerm(value)
+    onSearchChange(value)
+    onFilterChange({
+      category: selectedCategory,
+      price: selectedPrice,
+      location: selectedLocation,
+      search: value
+    })
+  }
   return (
 
 
@@ -37,9 +51,15 @@ function Navbar() {
 
       <div className='navbar-center'>
         <div className='search-container'>
-          <input type="text" className='input-container' placeholder='Buscar por: item, categoria, vendedor' />
+          <input type="text" className='input-container' 
+          value={searchTerm}
+onChange={handleSearchChange}
+          placeholder='Buscar por: item, categoria, vendedor' 
+          />
           <div className='search-icon'>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"  
+            value={searchTerm}
+            onChange={handleSearchChange}>
               <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>

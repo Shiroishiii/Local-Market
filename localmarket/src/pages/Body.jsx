@@ -112,7 +112,9 @@ function Body() {
   return (
 
     <div className='body-container'>
-      <Navbar />
+      <Navbar 
+        onSearchChange={handleSearchChange}
+        onFilterChange={handleFilterChange}/>
       <FilterBar
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
