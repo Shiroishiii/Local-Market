@@ -50,7 +50,6 @@ function Login() {
       const res = await axios.post('http://localhost:3001/login', loginData);
 
       console.log("Login OK:", res.data);
-
       setNomeUsuario(res.data.nome);
       setUsuarioLogado(res.data);
       setShowModal(true);

@@ -36,7 +36,7 @@ export const GlobalContextProvider = ({ children }) => {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // Lista de produtos vindos do backend (ou combinados com defaults na UI)
-  const [produtos, setProdutos] = useState([]);
+
 
   function toggleSidebar(){
     setIsSidebarOpen((v) => !v);
@@ -90,7 +90,7 @@ export const GlobalContextProvider = ({ children }) => {
         setUsuarioLogado,
 
         produtos,
-        adicionarItem,  // renomeado função para combinar
+        adicionarItem,
       }}
     >
       {children}
