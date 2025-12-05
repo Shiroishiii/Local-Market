@@ -11,7 +11,7 @@ function ControleFinanceiro() {
 
   async function fetchDadosUser() {
     try {
-      const res = await fetch("http://localhost:3001/aluguelporusuario/${usuarioLogado.id_usuario}")
+      const res = await fetch("http://localhost:3001/aluguelporusuario/6")
       const data = await res.json()
 
       console.log("retorno da api", data)

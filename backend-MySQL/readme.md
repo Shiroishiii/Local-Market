@@ -64,7 +64,6 @@ id_aluguel INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 data_inicio DATETIME,
 data_fim DATETIME,
 valor_total DECIMAL(8,2),
-status ENUM('Disponível', 'Não disponível','Reservado'),
 usuario_id INT,
 FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario),
 item_id INT,
@@ -73,13 +72,13 @@ FOREIGN KEY (item_id) REFERENCES item (id_item)
 
 
 INSERT INTO aluguel
-(data_inicio, data_fim, valor_total, status, usuario_id, item_id)
+(data_inicio, data_fim, valor_total,usuario_id, item_id)
 VALUES
-('2025-11-05 09:00:00', '2025-11-07 18:00:00', 300.00, 'Reservado', 1, 1),
-('2025-11-10 08:00:00', '2025-11-10 18:00:00', 35.00, 'Disponível', 2, 2),
-('2025-11-12 14:00:00', '2025-11-14 20:00:00', 40.00, 'Não disponível', 3, 3),
-('2025-11-18 09:00:00', '2025-11-18 17:00:00', 180.00, 'Disponível', 4, 4),
-('2025-11-22 19:00:00', '2025-11-23 03:00:00', 850.00, 'Reservado', 5, 5);
+('2025-11-05 09:00:00', '2025-11-07 18:00:00', 300.00,1, 1),
+('2025-11-10 08:00:00', '2025-11-10 18:00:00', 35.00, 2, 2),
+('2025-11-12 14:00:00', '2025-11-14 20:00:00', 40.00, 3, 3),
+('2025-11-18 09:00:00', '2025-11-18 17:00:00', 180.00, 4, 4),
+('2025-11-22 19:00:00', '2025-11-23 03:00:00', 850.00,5, 5);
 
 
 CREATE TABLE pagamento(
