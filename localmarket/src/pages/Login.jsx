@@ -48,9 +48,10 @@ function Login() {
       console.log("Enviando login:", loginData);
 
       const res = await axios.post('http://localhost:3001/login', loginData);
-
+      
       console.log("Login OK:", res.data);
-
+      
+     (localStorage.setItem("id_usuario", res.data.id_usuario));  
       setNomeUsuario(res.data.nome);
       setUsuarioLogado(res.data);
       setShowModal(true);
@@ -108,7 +109,7 @@ function Login() {
       {showErrorModal && (
         <div className="modal-overlay-error">
           <div className="modal-content-error">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path fill="currentColor" fill-rule="evenodd" d="M256 42.667c117.803 0 213.334 95.53 213.334 213.333S373.803 469.334 256 469.334S42.667 373.803 42.667 256S138.197 42.667 256 42.667m48.918 134.25L256 225.836l-48.917-48.917l-30.165 30.165L225.835 256l-48.917 48.918l30.165 30.165L256 286.166l48.918 48.917l30.165-30.165L286.166 256l48.917-48.917z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path fill="currentColor" fillrule="evenodd" d="M256 42.667c117.803 0 213.334 95.53 213.334 213.333S373.803 469.334 256 469.334S42.667 373.803 42.667 256S138.197 42.667 256 42.667m48.918 134.25L256 225.836l-48.917-48.917l-30.165 30.165L225.835 256l-48.917 48.918l30.165 30.165L256 286.166l48.918 48.917l30.165-30.165L286.166 256l48.917-48.917z" /></svg>
             <p>{errorMessage}</p>
           </div>
         </div>

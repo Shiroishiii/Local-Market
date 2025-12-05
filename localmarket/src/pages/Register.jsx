@@ -29,7 +29,7 @@ function Register() {
       console.log("res api", response.status);
       
       if(response.status === 201){
-        localStorage.setItem("id_usuario", response.data.id_usuario);        
+        (localStorage.setItem("id_usuario", response.data.id_usuario));        
          limparForm()
          navigate('/login')
       } 
