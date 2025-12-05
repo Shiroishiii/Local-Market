@@ -6,10 +6,8 @@
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
-  max-width: 320px;
-  margin: 15px;
-  position: relative;
-  backdrop-filter: blur(10px);
+  max-width: 400px;
+  margin: 20px;
 }
 
 .product-card::before {
@@ -34,60 +32,39 @@
 }
 
 .product-image-container {
-
   width: 100%;
-  height: 250px;
+  height: 200px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--cor-branco) 0%, var(--cor-cinza-claro) 100%);
+  background: #e0e0e0;
 
-  background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
-  padding: 6px 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-image {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
-  transition: all 0.4s ease;
-  filter: brightness(1.1) contrast(1.1);
+  object-position: center;
+  background: linear-gradient(135deg, var(--cor-branco) 0%, var(--cor-cinza-claro) 100%);
+  background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
+  /* centraliza a imagem */
+  transition: transform 0.3s ease;
 }
 
-.product-card:hover .product-image {
+
+.product-card:hover {
   transform: scale(1.1);
   filter: brightness(1.2) contrast(1.2);
 }
 
-/* .product-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
-  padding: 6px 12px;
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-} */
 
-.card-img{
-  height: 100%;
-  width: 100%;
-
-}
-
-.rating {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--cor-branco);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
 
 .product-info {
   padding: 20px;
   background: linear-gradient(180deg, rgba(244, 244, 242, 0.9) 0%, rgba(212, 205, 197, 0.8) 100%);
+  height: 100%;
 }
 
 .product-name {
@@ -112,27 +89,6 @@
   font-weight: 400;
 }
 
-.seller-info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 18px;
-  padding: 12px;
-  background: rgba(91, 136, 165, 0.1);
-  border-radius: 10px;
-  border-left: 3px solid var(--cor-azul-pastel);
-}
-
-.seller-name,
-.seller-location {
-  font-size: 13px;
-  color: var(--cor-azul-marinho);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 500;
-}
-
 .product-footer {
   display: flex;
   justify-content: space-between;
@@ -152,22 +108,33 @@
   background-clip: text;
 }
 
+.info-seller {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 12px;
+  background: rgba(91, 136, 165, 0.1);
+  border-radius: 10px;
+  border-left: 3px solid var(--cor-azul-pastel);
+}
+
 .contact-button {
-    background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
-    color: var(--cor-branco);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
+  color: var(--cor-branco);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-button::before {
@@ -202,31 +169,31 @@
     max-width: 100%;
     margin: 10px 0;
   }
-  
+
   .product-image-container {
     height: 200px;
   }
-  
+
   .product-info {
     padding: 16px;
   }
-  
+
   .product-name {
     font-size: 18px;
   }
-  
+
   .product-footer {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
   }
-  
+
   .contact-button {
     width: 100%;
     padding: 14px;
     font-size: 14px;
   }
-  
+
   .product-price {
     font-size: 22px;
     text-align: center;

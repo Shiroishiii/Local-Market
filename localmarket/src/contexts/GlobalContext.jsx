@@ -52,7 +52,7 @@ export const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch("http://localhost:3000/products");
+        const res = await fetch("http://localhost:3001/item");
         if (!res.ok) throw new Error("Falha ao buscar produtos");
         const data = await res.json();
         setProdutos(data || []);

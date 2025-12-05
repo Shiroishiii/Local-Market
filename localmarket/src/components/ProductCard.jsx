@@ -2,26 +2,40 @@ import React from "react";
 import "./ProductCard.css";
 
 export default function ProductCard({ product }) {
-  const thumb =
-    product.video ||
-    (product.images && product.images[0]) ||
-    product.image;
-
   return (
     <div className="product-card">
-      {/* Mídia */}
-      {product.video ? (
-        <video className="product-thumb" src={product.video} controls />
-      ) : (
-        <img className="product-thumb" src={thumb} alt={product.name} />
-      )}
+      {/* Container da imagem */}
+      <div className="product-image-container">
+        <img
+          className="product-image"
+          src="./img/produto.png"
+          alt={product.titulo}
+        />
+      </div>
 
-      {/* Infos */}
+      {/* Informações do produto */}
       <div className="product-info">
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <strong>R$ {product.price}</strong>
-        <span>{product.location}</span>
+        <h3 className="product-name">{product.titulo}</h3>
+        <p className="product-description">{product.descricao}</p>
+
+        {/* Informações do vendedor */}
+        <div className="info-seller">
+          <span className="name-seller">
+            <img src="./img/user.svg" alt="Foto do vendedor" />
+            {product.usuario_nome || "Usuário"}
+          </span>
+          <span className="location-seller">
+            <img src="./img/local-black.svg" alt="Localização" />
+            {product.rua}, {product.bairro} - {product.cidade}
+          </span>
+        </div>
+
+        {/* Footer com preço */}
+        <div className="product-footer">
+          <span className="product-price">R$ {product.preco_diaria}/dia</span>
+          {/* Botão de contato opcional */}
+          <button className="contact-button">Contato</button>
+        </div>
       </div>
     </div>
   );
