@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
       <div className="product-image-container">
         <img
           className="product-image"
-          src= {`./img/${product}`}
+          src= {`./img/${product.imagem}`}
           alt={product.titulo}
         />
       </div>

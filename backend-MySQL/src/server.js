@@ -147,11 +147,11 @@ app.get('/item/:id', async (req, res) => {
 app.post('/item', async (req, res) => {
     console.log("cheguei aqui, as informações são: ", req.body);
     
-    const {titulo, descricao, categoria, preco,  cidade, rua, bairro, estado, cep, telefone, usuario_id } = req.body;
+    const {titulo, descricao, categoria, preco,  cidade, rua, bairro, estado, cep, telefone, imagem, usuario_id } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO item (titulo, descricao, categoria, preco_diaria, cidade, rua, bairro, estado, cep, telefone, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [titulo, descricao, categoria, preco,  cidade, rua, bairro, estado, cep, telefone, usuario_id ]
+            'INSERT INTO item (titulo, descricao, categoria, preco_diaria, cidade, rua, bairro, estado, cep, telefone, imagem, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [titulo, descricao, categoria, preco,  cidade, rua, bairro, estado, cep, telefone, imagem, usuario_id ]
         );
         const [novoItem] = await pool.query('SELECT * FROM item WHERE id_item = ?', [result.insertId]);
         res.status(201).json(novoItem[0]);
@@ -164,11 +164,11 @@ app.post('/item', async (req, res) => {
 
 app.put('/item/:id', async (req, res) => {
     const { id } = req.params;
-    const { descricao, preco,  cidade, rua, bairro, estado, cep, telefone } = req.body;
+    const { descricao, preco,  cidade, rua, bairro, estado, cep, telefone, imagem } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE item SET descricao = ?, preco_diaria = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_item = ?',
-            [descricao, preco,  cidade, rua, bairro, estado, cep, telefone]
+            'UPDATE item SET descricao = ?, preco_diaria = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ?,  imagem = ? WHERE id_item = ?',
+            [descricao, preco,  cidade, rua, bairro, estado, cep, telefone, imagem]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Item não encontrado' });
