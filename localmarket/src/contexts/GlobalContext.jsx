@@ -14,6 +14,7 @@ export const GlobalContext = createContext();
 
 
 export const GlobalContextProvider = ({ children }) => {
+
   const [usuarioLogado, setUsuarioLogado] = useState({
     id_usuario: 12,
     nome: "Maria",
@@ -98,6 +99,9 @@ export const GlobalContextProvider = ({ children }) => {
         isSidebarOpen,
         setIsSidebarOpen,
         toggleSidebar,
+
+        
+
 
         usuarioLogado,
         setUsuarioLogado,
