@@ -16,7 +16,7 @@ export default function Anunciar() {
     const [estado, setEstado] = useState("")
     const [cep, setCep] = useState("");
     const [telefone, setTelefone] = useState("");
-    const [imagens, setImagens] = useState([]);
+    const [imagem, setImagem] = useState([]);
     const [loading, setLoading] = useState(false);
     const {usuarioLogado} = useContext(GlobalContext)
 
@@ -44,13 +44,15 @@ export default function Anunciar() {
     const handleImagens = (e) => {
         const files = Array.from(e.target.files);
         
-        if (files.length > 5) {
-            alert("Você só pode enviar no máximo 5 imagens.");
+        if (files.length > 1) {
+            alert("Você só pode enviar no máximo 1 imagem.");
             return;
         }
         
-        const previews = files.map((file) => URL.createObjectURL(file));
-        setImagens(previews);
+        // const previews = files.map((file) => URL.createObjectURL(file));
+        // const previews =  URL.createObjectURL(files[0]);
+        const previews =  files[0].name;
+        setImagem(previews);
     };
     
     // Enviar item
@@ -68,6 +70,7 @@ export default function Anunciar() {
                 estado,
                 cep,
                 telefone,
+                imagem,
                 usuario_id: usuarioLogado.id_usuario
             };
             
@@ -168,19 +171,19 @@ export default function Anunciar() {
 
                 <h2 className="pre-vizu-d">Pré-visualização</h2>
 
-                <div className="preview-media">
+                {/* <div className="preview-media">
                     {imagens.length > 0 ? (
                         <img src={imagens[0]} alt="preview" />
                     ) : (
                         <div className="preview-placeholder">Nenhuma imagem selecionada</div>
                     )}
-                </div>
+                </div> */}
 
-                <div className="preview-thumbs">
+                {/* <div className="preview-thumbs">
                     {imagens.map((img, i) => (
                         <img key={i} src={img} />
                     ))}
-                </div>
+                </div> */}
 
                 <div className="preview-info">
                     <h3>{titulo || "Título do item"}</h3>

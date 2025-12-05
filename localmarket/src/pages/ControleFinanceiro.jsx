@@ -6,7 +6,7 @@ import { GlobalContext } from '../contexts/GlobalContext'
 import ExtratoCard from "../components/ExtratoCard";
 
 function ControleFinanceiro() {
-   const {usuarioLogado} = useContext(GlobalContext)
+  const {usuarioLogado} = useContext(GlobalContext)
   const [transacoes, setTransacoes] = useState([]);
 
   async function fetchDadosUser() {
