@@ -1,7 +1,15 @@
 import React from "react";
 import "./ProductCard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product }) {
+
+  const navigate = useNavigate();
+
+  function abrirProduto(){
+    navigate(`/produto/${product.id_item}`)
+  }
+
   return (
     <div className="product-card">
       {/* Container da imagem */}
@@ -34,7 +42,7 @@ export default function ProductCard({ product }) {
         <div className="product-footer">
           <span className="product-price">R$ {product.preco_diaria}/dia</span>
           {/* Botão de contato opcional */}
-          <button className="contact-button">Contato</button>
+          <button onClick={abrirProduto} className="alug-button">Alugar</button>
         </div>
       </div>
     </div>
