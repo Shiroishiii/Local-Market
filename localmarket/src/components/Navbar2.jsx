@@ -6,7 +6,7 @@ function Navbar2() {
   return (
     <div className='Navbar-container-2'>
       <div className='navbar-left-2'>
-        <img className='logoNav-2' src="./img/LogoAtu.svg" alt="" />
+        <Link to={'/'}><img className='logoNav-2' src="./img/LogoAtu.svg" alt="" /></Link>
         <h3>LOCAL<span className='span-market'>MARKET</span></h3>
       </div>
       <div className='navbar-center-2'>

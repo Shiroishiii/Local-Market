@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
+import { useContext } from 'react'
 
 
 function Produto() {
@@ -10,13 +11,13 @@ function Produto() {
     const [produto, setProduto] = useState(null)
     const navigate = useNavigate()
 
-    const { adicionarCarrinho } = GlobalContext()
+    const { adicionarCarrinho } = useContext(GlobalContext)
 
     useEffect(() => {
         fetch(`http://localhost:3001/item/${id}`)
         .then(res => res.json())
         .then(dados => setProduto(dados))
-        .then(err => console.log(err))
+        .catch(err => console.log(err))
     }, [id])
 
     if(!produto) {
@@ -25,10 +26,6 @@ function Produto() {
 
     function abrirPagamento(){
         navigate ('/pagamento', { state: { id }})
-    }
-
-    if(!produto){
-        return <p>Carregando...</p>
     }
 
     function AdicionarAoCarrinho() {

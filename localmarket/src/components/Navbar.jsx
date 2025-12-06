@@ -41,7 +41,7 @@ function Navbar( {onSearchChange, onFilterChange}) {
       </nav>
 
       <div className='navbar-left'>
-        <img className='logoNav' src="/img/LogoAtu.svg" alt="" />
+        <Link to={'/'}><img className='logoNav' src="/img/LogoAtu.svg" alt="" /></Link>
         <h3 className='span-local'>LOCAL <span className='span-market'> MARKET</span></h3>
         <div className='location-section'>
           <img className='icon-local' src="/img/local.svg" alt="Localização" />
