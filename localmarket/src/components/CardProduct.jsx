@@ -1,10 +1,15 @@
 import './CardProduct.css';
 
 function CardProduct({ produto }) {
+    console.log(produto)
     return (
         <div className='card-product'>
             <div className='image-product'>
-                <img className='img-card' src="/img/produto.png" alt="Avaliação" />
+                <img
+                    className="product-image"
+                    src={`./img/${produto.imagem}`}
+                    alt={produto.titulo}
+                />
             </div>
             <div className='info-product'>
                 <h3 className='name-product'>{produto.titulo}</h3>

@@ -13,18 +13,18 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
 
-  const [carrinho, setCarrinho] = useState([])
+  const [produtosCarrinho, setProdutosCarrinho] = useState([])
 
   const adicionarCarrinho = (produto) => {
-      setCarrinho((prevCarrinho) => [...prevCarrinho, produto])
+    setProdutosCarrinho((prevCarrinho) => [...prevCarrinho, produto])
   }
 
-  const removerCarrinho = (produto => {
-    setCarrinho((prevCarrinho) => prevCarrinho.filter((produto) => produto.id_item !== id))
-  }) 
+  const removerCarrinho = (id_item) => {
+    setProdutosCarrinho((prevCarrinho) => prevCarrinho.filter((produto) => produto.id_item !== id_item));
+  };
 
   const limparCarrinho = (produto => {
-    setCarrinho([])
+    setProdutosCarrinho([])
   })
 
   const [usuarioLogado, setUsuarioLogado] = useState({
@@ -41,10 +41,10 @@ export const GlobalContextProvider = ({ children }) => {
     cnpj: null,
     telefone: 999903456713,
     tipo: null
-});
-  useEffect(() =>{
+  });
+  useEffect(() => {
     console.log(usuarioLogado)
-  },[usuarioLogado])
+  }, [usuarioLogado])
 
 
 
@@ -55,7 +55,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [item, setItem] = useState([]);
   const [produtos, setProdutos] = useState([])
 
-  function toggleSidebar(){
+  function toggleSidebar() {
     setIsSidebarOpen((v) => !v);
   }
   useEffect(() => {
@@ -101,7 +101,7 @@ export const GlobalContextProvider = ({ children }) => {
         setIsSidebarOpen,
         toggleSidebar,
 
-        
+
 
 
         usuarioLogado,
@@ -110,7 +110,7 @@ export const GlobalContextProvider = ({ children }) => {
         produtos,
         adicionarItem,
 
-        carrinho,
+        produtosCarrinho,
         adicionarCarrinho,
         removerCarrinho,
         limparCarrinho
