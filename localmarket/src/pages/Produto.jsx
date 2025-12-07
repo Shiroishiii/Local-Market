@@ -14,10 +14,27 @@ function Produto() {
     const { adicionarCarrinho } = useContext(GlobalContext)
 
     useEffect(() => {
-        fetch(`http://localhost:3001/item/${id}`)
-        .then(res => res.json())
-        .then(dados => setProduto(dados))
-        .catch(err => console.log(err))
+        const buscarProduto = async () => {
+            try {
+                // Buscando o produto
+                const resItem = await fetch(`http://localhost:3001/item/${id}`);
+                const dados = await resItem.json();
+                
+                // Buscando o nome do usuário
+                if (dados.usuario_id) {
+                    const resUser = await fetch(`http://localhost:3001/usuario/${dados.usuario_id}`);
+                    const usuario = await resUser.json();
+                    // Adicionando o nome do usuário ao produto
+                    setProduto({ ...dados, usuario_nome: usuario.nome });
+                } else {
+                    setProduto(dados);
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        
+        buscarProduto();
     }, [id])
 
     if(!produto) {
@@ -25,7 +42,8 @@ function Produto() {
     }
 
     function abrirPagamento(){
-        navigate ('/pagamento', { state: { id }})
+        // Enviando o produto completo em um array para a página de pagamento
+        navigate('/pagamento', { state: { produtos: [produto] } })
     }
 
     function AdicionarAoCarrinho() {
