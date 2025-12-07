@@ -1,27 +1,26 @@
-import './Carrinho.css'
-import Navbar2 from '../components/Navbar2'
-import CardProduct from '../components/CardProduct'
-import { useContext } from 'react'
-import { GlobalContext } from '../contexts/GlobalContext'
-import { useNavigate } from 'react-router-dom'
+import './Carrinho.css';
+import Navbar2 from '../components/Navbar2';
+import CardProduct from '../components/CardProduct';
+import { useContext } from 'react';
+import { GlobalContext } from '../contexts/GlobalContext';
+import { useNavigate } from 'react-router-dom';
 
 function Carrinho() {
   const { produtosCarrinho, removerCarrinho, limparCarrinho } = useContext(GlobalContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  // Calcula o preço total
+  // Calculando o preço total
   const totalPreco = produtosCarrinho.reduce((acc, produto) => acc + parseFloat(produto.preco_diaria), 0);
 
-  function abrirPagamento() {
-  // Passando todos os produtos do carrinho para o estado da navegação
-  if (produtosCarrinho.length > 0) {
-    navigate('/pagamento', { state: { produtos: produtosCarrinho } });
-  } else {
-    console.error("Carrinho vazio!");
+  // Função para navegar para a página de pagamento
+  function navegarParaPagamento() {
+    if (produtosCarrinho.length > 0) {
+      // Passando todos os produtos para a página de pagamento
+      navigate('/pagamento', { state: { produtos: produtosCarrinho } });
+    } else {
+      console.error("Carrinho vazio!");
+    }
   }
-}
-
-
 
 
   return (
@@ -60,7 +59,7 @@ function Carrinho() {
             Limpar Carrinho
           </button>
 
-          <button className='button-alugar' onClick={abrirPagamento}>Alugar</button>
+          <button className='button-alugar' onClick={navegarParaPagamento}>Alugar</button>
         </div>
       </div>
     </div>

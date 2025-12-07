@@ -23,7 +23,6 @@ const router = createBrowserRouter([
     {path: '/pagamento', element: <Pagamento />},
     {path: '/favoritos',element: <Favoritos />},
     {path: '/ajuda',element:<Ajuda/>},
-    {path: '/configuracao',element:<Configuracao />},
     {path: '/controleFinanceiro', element:<ControleFinanceiro />},
     {path: '/produto/:id', element: <Produto/>},
     {path: '/configuracao', element: <Configuracao/>}
