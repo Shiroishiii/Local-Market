@@ -7,9 +7,7 @@
     min-height: 100%;
     width: 100%;
     gap: 5px;
-
-    background-color: var(--cor-cinza-claro);
-  
+  min-height: 100vh;
 }
 
 .titulo-controleFinaceiro{
