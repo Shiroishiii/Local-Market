@@ -1,7 +1,7 @@
 .anunciar-container {
     display: flex;
     height: 100vh;
-    background: #9c9797;
+    background:var(--cor-cinza-claro);
 }
 
 /* ----- COLUNA ESQUERDA ----- */

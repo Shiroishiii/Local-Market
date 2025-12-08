@@ -42,10 +42,10 @@ function Navbar( {onSearchChange, onFilterChange}) {
       </nav>
 
       <div className='navbar-left'>
-        <img className='logoNav' src="./img/LogoAtu.svg" alt="" />
+        <Link to={'/'}><img className='logoNav' src="/img/LogoAtu.svg" alt="" /></Link>
         <h3 className='span-local'>LOCAL <span className='span-market'> MARKET</span></h3>
         <div className='location-section'>
-          <img className='icon-local' src="./img/local.svg" alt="Localização" />
+          <img className='icon-local' src="/img/local.svg" alt="Localização" />
           <InfoCep />
         </div>
       </div>
@@ -73,7 +73,7 @@ onChange={handleSearchChange}
 
       <Link to = {'/anunciar'}> <button className='btn-anunciar-border'>Anuncie seu produto</button></Link>
         <div className='profile-section'>
-          <Link to={'/perfil'}><img className='profile-pic' src="./img/user.png" alt="Foto de perfil" /> </Link>
+          <Link to={'/perfil'}><img className='profile-pic' src="/img/user.png" alt="Foto de perfil" /> </Link>
           <button className='cart-button'>
             <Link to = {'/carrinho'}><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path fill="white" d="M14 13.1V12H4.6l.6-1.1l9.2-.9L16 4H3.7L3 1H0v1h2.2l2.1 8.4L3 13v1.5c0 .8.7 1.5 1.5 1.5S6 15.3 6 14.5S5.3 13 4.5 13H12v1.5c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5c0-.7-.4-1.2-1-1.4" />
             </svg> </Link>

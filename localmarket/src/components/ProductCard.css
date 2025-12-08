@@ -119,7 +119,7 @@
   border-left: 3px solid var(--cor-azul-pastel);
 }
 
-.contact-button {
+.alug-button {
   background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
   color: var(--cor-branco);
   border: none;
@@ -137,7 +137,7 @@
   overflow: hidden;
 }
 
-.contact-button::before {
+.alug-button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -148,17 +148,17 @@
   transition: left 0.5s;
 }
 
-.contact-button:hover {
+.alug-button:hover {
   background: linear-gradient(135deg, var(--cor-azul-marinho), var(--cor-preto));
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(36, 58, 105, 0.4);
 }
 
-.contact-button:hover::before {
+.alug-button:hover::before {
   left: 100%;
 }
 
-.contact-button:active {
+.alug-button:active {
   transform: translateY(0);
   box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
 }

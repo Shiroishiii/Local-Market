@@ -13,6 +13,20 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
 
+  const [produtosCarrinho, setProdutosCarrinho] = useState([])
+
+  const adicionarCarrinho = (produto) => {
+    setProdutosCarrinho((prevCarrinho) => [...prevCarrinho, produto])
+  }
+
+  const removerCarrinho = (id_item) => {
+    setProdutosCarrinho((prevCarrinho) => prevCarrinho.filter((produto) => produto.id_item !== id_item));
+  };
+
+  const limparCarrinho = (produto => {
+    setProdutosCarrinho([])
+  })
+
   const [usuarioLogado, setUsuarioLogado] = useState({
     id_usuario: 6,
     nome: "Maria",
@@ -27,10 +41,10 @@ export const GlobalContextProvider = ({ children }) => {
     cnpj: null,
     telefone: 999903456713,
     tipo: null
-});
-  useEffect(() =>{
+  });
+  useEffect(() => {
     console.log(usuarioLogado)
-  },[usuarioLogado])
+  }, [usuarioLogado])
 
 
 
@@ -38,10 +52,10 @@ export const GlobalContextProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // Lista de produtos vindos do backend (ou combinados com defaults na UI)
 
-  const [produtos,setProdutos] = useState([])
   const [item, setItem] = useState([]);
+  const [produtos, setProdutos] = useState([])
 
-  function toggleSidebar(){
+  function toggleSidebar() {
     setIsSidebarOpen((v) => !v);
   }
   useEffect(() => {
@@ -87,7 +101,7 @@ export const GlobalContextProvider = ({ children }) => {
         setIsSidebarOpen,
         toggleSidebar,
 
-        
+
 
 
         usuarioLogado,
@@ -95,6 +109,11 @@ export const GlobalContextProvider = ({ children }) => {
 
         produtos,
         adicionarItem,
+
+        produtosCarrinho,
+        adicionarCarrinho,
+        removerCarrinho,
+        limparCarrinho
       }}
     >
       {children}

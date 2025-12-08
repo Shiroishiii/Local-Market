@@ -1,7 +1,7 @@
 .config-continer{
     height: 100vh;
     width: 100%;
-    background-color: var(--cor-branco);
+    background-color: var(--cor-cinza-claro);
     display: flex;
     justify-content: center;
     align-items: center;
