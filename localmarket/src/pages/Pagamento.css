@@ -1,5 +1,4 @@
 .pag-container {
-    
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -7,6 +6,7 @@
     background-color: var(--cor-cinza-claro);
     min-height: calc(70px - 100vh);
     overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .pagamento-container {
