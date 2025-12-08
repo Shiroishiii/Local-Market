@@ -1,3 +1,7 @@
+CREATE DATABASE local_market;
+
+USE local_market;
+
 CREATE TABLE usuario(
 id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100),
@@ -94,3 +98,23 @@ VALUES
 ('2025-11-15 10:00:00', 40.00, 'Débito', 'Aguardando pagamento', 3),   -- Fantasia Infantil
 ('2025-11-18 18:00:00', 180.00, 'Pix', 'Pagamento realizado', 4),      -- Brinquedoteca
 ('2025-11-23 04:00:00', 850.00, 'Crédito', 'Aguardando pagamento', 5); -- Salão Golden Fest
+
+
+CREATE TABLE avaliacao(
+id_avaliacao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nota TINYINT(5),
+comentario TEXT,
+data DATE,
+aluguel_id INT,
+FOREIGN KEY (alUguel_id) REFERENCES aluguel (id_aluguel)
+);
+
+INSERT INTO avaliacao 
+(nota, comentario, data, aluguel_id)
+VALUES
+(5, 'Carro em ótimo estado, muito limpo e econômico. Recomendo!', '2025-11-08', 1), -- Gol 1.6 Completo
+(4, 'Furadeira funcionou bem, apenas um pouco pesada.', '2025-11-11', 2),          -- Furadeira Bosch
+(3, 'Fantasia bonita, mas o tamanho veio um pouco diferente.', '2025-11-15', 3),   -- Fantasia Infantil
+(5, 'As crianças adoraram! Equipamento seguro e bem conservado.', '2025-11-19', 4),-- Brinquedoteca Móvel
+(4, 'Salão espaçoso e organizado, mas o ar-condicionado falhou no final.', '2025-11-24', 5); -- Salão Golden Fest
+
