@@ -63,7 +63,7 @@ function Produto() {
                         <h1 className='nome-produto'>{produto.titulo}</h1>
                         <p className='desc-produto'>{produto.descricao}</p>
                         <div className='info-locador'>
-                            <span className='nome-locador'><img src="/img/user.svg" alt="Foto de perfil" />Joao</span>
+                            <span className='nome-locador'><img src="/img/user.svg" alt="Foto de perfil" />{produto.id_usuario}</span>
                             <span className='localizacao-locador'><img src="/img/local-black.svg" alt="Localização" />{produto.cidade}, {produto.bairro}, {produto.rua}</span>
                         </div>
                         <h1 className='preco-produto'>R$ {produto.preco_diaria}</h1>

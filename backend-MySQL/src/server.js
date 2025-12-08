@@ -7,7 +7,6 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',      // Altere para o nome do seu user no MySQL
     password: 'senai',    // Altere para a senha correta
-    // password: '2008isac',    // Altere para a senha correta
     database: 'local_market',
     waitForConnections: true,
     connectionLimit: 10,
@@ -43,11 +42,11 @@ app.get('/usuario/:id', async (req, res) => {
 
 app.post('/usuario', async (req, res) => {
     console.log('Corpo recebido: ', req.body);
-    const { nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo } = req.body;
+    const { nome, email, senha, imagem, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO usuario (nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
-            [nome, email, senha, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo]
+            'INSERT INTO usuario (nome, email, senha, imagem, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
+            [nome, email, senha, imagem, cidade, rua, bairro, estado, cep, cpf, cnpj, telefone, tipo]
         );
         const [novoCliente] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [result.insertId]);
         res.status(201).json(novoCliente[0]);
@@ -59,11 +58,11 @@ app.post('/usuario', async (req, res) => {
 
 app.put('/usuario/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome,  senha, cidade, rua, bairro, estado, cep, telefone } = req.body;
+    const { nome,  senha, imagem, cidade, rua, bairro, estado, cep, telefone } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE usuario SET nome = ?, senha = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_usuario = ?',
-            [nome,  senha, cidade, rua, bairro, estado, cep, telefone, id]
+            'UPDATE usuario SET nome = ?, senha = ?,imagem = ?, cidade = ?, rua = ?, bairro = ?, estado = ?, cep = ?, telefone = ? WHERE id_usuario = ?',
+            [nome,  senha, imagem, cidade, rua, bairro, estado, cep, telefone, id]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });

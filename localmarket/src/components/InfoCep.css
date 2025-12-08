@@ -1,6 +1,5 @@
 /* Botão da navbar */
 .btn-cep {
-
   background: transparent;
   color: white;
   border: none;
@@ -29,17 +28,17 @@
 }
 
 /* Caixinha do modal */
-.modal-container {
+.modal-cont {
+  background-color: var(--cor-branco);
   position: fixed;
   top: 50%;
   left: 50%;
   transform:translate(-50%, -50%);
-  background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   text-align: center;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 /* Botão X pra fechar */
