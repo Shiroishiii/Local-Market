@@ -2,7 +2,7 @@
 .perfil-container {
     display: flex;
     background-color: var(--cor-cinza-claro);
-    min-height: 100vh;
+    max-height: 100vh;
 }
 
 /* Sidebar */
