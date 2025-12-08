@@ -142,6 +142,16 @@ function Configuracao() {
         <button  className='button-confirm' onClick={cadastroLocatario}>Cadastro de locatário</button>
       </div>
     </div>
+
+    {/* Modal */}
+    {showModal && (
+      <div className="modal-overlay" onClick={() => setShowModal(false)}>
+        <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+          <h3>{modalMessage}</h3>
+          <button onClick={() => setShowModal(false)} className="button-close-modal">Fechar</button>
+        </div>
+      </div>
+    )}
     </div> 
   )
 }

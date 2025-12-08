@@ -170,7 +170,7 @@
     left: 100%;
 }
   
-.button-locatio:active {
+.button-location:active {
     transform: translateY(0);
     box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
 }

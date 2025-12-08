@@ -27,23 +27,45 @@ export const GlobalContextProvider = ({ children }) => {
     setProdutosCarrinho([])
   })
 
-  const [usuarioLogado, setUsuarioLogado] = useState({
-    id_usuario: 6,
-    nome: "Maria",
-    email: "Maria@gmail.com",
-    senha: "1",
-    cidade: null,
-    rua: null,
-    bairro: null,
-    estado: null,
-    cep: null,
-    cpf: 1367829182,
-    cnpj: null,
-    telefone: 999903456713,
-    tipo: null
+  // Carregar usuário do localStorage na inicialização
+  const [usuarioLogado, setUsuarioLogado] = useState(() => {
+    const usuarioSalvo = localStorage.getItem('usuarioLogado');
+    if (usuarioSalvo) {
+      try {
+        return JSON.parse(usuarioSalvo);
+      } catch (e) {
+        console.error('Erro ao parsear usuário do localStorage:', e);
+      }
+    }
+    return {
+      id_usuario: null,
+      nome: "",
+      email: "",
+      senha: "",
+      cidade: null,
+      rua: null,
+      bairro: null,
+      estado: null,
+      cep: null,
+      cpf: '',
+      cnpj: null,
+      telefone: '',
+      tipo: null,
+      imagem: null
+    };
   });
+
+  // Salvar usuário no localStorage sempre que ele for atualizado
   useEffect(() => {
-    console.log(usuarioLogado)
+    try {
+      if (usuarioLogado && usuarioLogado.id_usuario) {
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+        localStorage.setItem('id_usuario', usuarioLogado.id_usuario.toString());
+        console.log('Usuário salvo no localStorage:', usuarioLogado);
+      }
+    } catch (error) {
+      console.error('Erro ao salvar usuário no localStorage:', error);
+    }
   }, [usuarioLogado])
 
 

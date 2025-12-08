@@ -16,18 +16,59 @@ export default function Anunciar() {
     const [estado, setEstado] = useState("")
     const [cep, setCep] = useState("");
     const [telefone, setTelefone] = useState("");
-    const [imagem, setImagem] = useState([]);
+    const [imagem, setImagem] = useState("");
+    const [imagemPreview, setImagemPreview] = useState(null);
     const [loading, setLoading] = useState(false);
     const {usuarioLogado} = useContext(GlobalContext)
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
 
 
     const  navigate = useNavigate()
+
+    // Função para formatar CEP: XXXXX-XXX
+    const formatarCEP = (valor) => {
+        const apenasNumeros = valor.replace(/\D/g, '');
+        const numerosLimitados = apenasNumeros.slice(0, 8);
+        
+        if (numerosLimitados.length <= 5) {
+            return numerosLimitados;
+        } else {
+            return `${numerosLimitados.slice(0, 5)}-${numerosLimitados.slice(5)}`;
+        }
+    };
+
+    const handleCEPChange = (e) => {
+        const valorFormatado = formatarCEP(e.target.value);
+        setCep(valorFormatado);
+    };
+
+    // Função para formatar telefone: (XX) XXXXX-XXXX
+    const formatarTelefone = (valor) => {
+        const apenasNumeros = valor.replace(/\D/g, '');
+        const numerosLimitados = apenasNumeros.slice(0, 11);
+        
+        if (numerosLimitados.length <= 2) {
+            return numerosLimitados;
+        } else if (numerosLimitados.length <= 7) {
+            return `(${numerosLimitados.slice(0, 2)}) ${numerosLimitados.slice(2)}`;
+        } else {
+            return `(${numerosLimitados.slice(0, 2)}) ${numerosLimitados.slice(2, 7)}-${numerosLimitados.slice(7)}`;
+        }
+    };
+
+    const handleTelefoneChange = (e) => {
+        const valorFormatado = formatarTelefone(e.target.value);
+        setTelefone(valorFormatado);
+    };
+
     // Buscar cidade e bairro pelo CEP
     const buscarCep = async (valor) => {
-        setCep(valor);
+        const cepLimpo = valor.replace(/\D/g, '');
+        setCep(formatarCEP(valor));
         
-        if (valor.length === 8) {
-            const req = await fetch(`https://viacep.com.br/ws/${valor}/json/`);
+        if (cepLimpo.length === 8) {
+            const req = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
             const data = await req.json();
             
             
@@ -40,52 +81,89 @@ export default function Anunciar() {
         }
     };
     
-    // Imagens (máximo 5)
+    // Imagens (máximo 1)
     const handleImagens = (e) => {
         const files = Array.from(e.target.files);
         
         if (files.length > 1) {
-            alert("Você só pode enviar no máximo 1 imagem.");
+            setModalMessage("Você só pode enviar no máximo 1 imagem.");
+            setShowModal(true);
             return;
         }
         
-        // const previews = files.map((file) => URL.createObjectURL(file));
-        // const previews =  URL.createObjectURL(files[0]);
-        const previews =  files[0].name;
-        setImagem(previews);
+        if (files.length === 1) {
+            const file = files[0];
+            // Salvar nome do arquivo para enviar ao backend
+            setImagem(file.name);
+            
+            // Criar preview da imagem
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagemPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
     
     // Enviar item
     const enviarItem = async () => {
+        // Validação básica
+        if (!titulo || !descricao || !categoria || !preco) {
+            setModalMessage("Por favor, preencha todos os campos obrigatórios!");
+            setShowModal(true);
+            return;
+        }
+
+        if (!usuarioLogado?.id_usuario) {
+            setModalMessage("Você precisa estar logado para anunciar um item!");
+            setShowModal(true);
+            return;
+        }
+
         try {
-            // const id_usuario = localStorage.getItem('id_usuario')
+            // Garantir que usuario_id seja um número inteiro
+            const usuarioId = parseInt(usuarioLogado.id_usuario);
+            
+            if (isNaN(usuarioId) || usuarioId <= 0) {
+                setModalMessage("Erro: ID de usuário inválido. Por favor, faça login novamente.");
+                setShowModal(true);
+                return;
+            }
+
             const item = {
-                titulo,
-                descricao,
-                categoria,
-                preco,
-                cidade,
-                rua,
-                bairro,
-                estado,
-                cep,
-                telefone,
-                imagem,
-                usuario_id: usuarioLogado.id_usuario
+                titulo: titulo.trim(),
+                descricao: descricao.trim(),
+                categoria: categoria.trim(),
+                preco: parseFloat(preco) || 0,
+                cidade: cidade || null,
+                rua: rua || null,
+                bairro: bairro || null,
+                estado: estado || null,
+                cep: cep || null,
+                telefone: telefone || null,
+                imagem: imagem || null,
+                usuario_id: usuarioId
             };
             
             console.log("Dados enviados para API", item);
+            console.log("Usuario ID (tipo):", typeof usuarioId, usuarioId);
 
             const response = await axios.post('http://localhost:3001/item', item);
             console.log("res api", response.status);
 
             if (response.status === 201) {
-                alert("Item enviado ao backend!")
-                 navigate('/');
+                setModalMessage("Item enviado ao backend!");
+                setShowModal(true);
+                setTimeout(() => {
+                    navigate('/');
+                }, 1500);
             }
 
         } catch (error) {
             console.error('Erro ao adicionar item:', error);
+            const errorMessage = error.response?.data?.details || error.response?.data?.error || error.message || 'Erro ao adicionar item';
+            setModalMessage(`Erro: ${errorMessage}`);
+            setShowModal(true);
         }
     };
 
@@ -130,7 +208,8 @@ export default function Anunciar() {
                     className="inputs"
                     value={cep}
                     onChange={(e) => buscarCep(e.target.value)}
-                    maxLength={8}
+                    maxLength={9}
+                    placeholder="00000-000"
                 />
 
                 <label>Cidade</label>
@@ -147,10 +226,12 @@ export default function Anunciar() {
 
                 <label>Telefone</label>
                 <input
-                    type="text"
+                    type="tel"
                     className="inputs"
                     value={telefone}
-                    onChange={(e) => setTelefone(e.target.value)}
+                    onChange={handleTelefoneChange}
+                    maxLength={15}
+                    placeholder="(11) 99999-9999"
                 />
 
                 <label>Imagens (máx 5)</label>
@@ -171,27 +252,32 @@ export default function Anunciar() {
 
                 <h2 className="pre-vizu-d">Pré-visualização</h2>
 
-                {/* <div className="preview-media">
-                    {imagens.length > 0 ? (
-                        <img src={imagens[0]} alt="preview" />
+                <div className="preview-media">
+                    {imagemPreview ? (
+                        <img src={imagemPreview} alt="preview" />
                     ) : (
                         <div className="preview-placeholder">Nenhuma imagem selecionada</div>
                     )}
-                </div> */}
-
-                {/* <div className="preview-thumbs">
-                    {imagens.map((img, i) => (
-                        <img key={i} src={img} />
-                    ))}
-                </div> */}
+                </div>
 
                 <div className="preview-info">
                     <h3>{titulo || "Título do item"}</h3>
                     <p>{descricao || "Descrição aparecerá aqui."}</p>
                     <strong>{preco ? `R$ ${preco}/dia` : "Preço da diária"}</strong>
-                    <p>{bairro && `${bairro}, ${cidade}`}</p>
+                    <p>{bairro && cidade ? `${bairro}, ${cidade}` : "Localização aparecerá aqui"}</p>
+                    {categoria && <p><strong>Categoria:</strong> {categoria}</p>}
                 </div>
             </div>
+
+            {/* Modal */}
+            {showModal && (
+                <div className="modal-overlay" onClick={() => setShowModal(false)}>
+                    <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+                        <h3>{modalMessage}</h3>
+                        <button onClick={() => setShowModal(false)} className="button-close-modal">Fechar</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

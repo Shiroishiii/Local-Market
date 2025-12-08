@@ -57,13 +57,20 @@ function Produto() {
             <div className='product-body'>
                 <div className='product-container'>
                     <div className='image-container'>
-                        <img className='img' src="/img/produto.png" alt="" />
+                        <img 
+                            className='img' 
+                            src={produto.imagem ? `/img/${produto.imagem}` : "/img/produto.png"} 
+                            alt={produto.titulo || "Produto"} 
+                            onError={(e) => {
+                                e.target.src = "/img/produto.png";
+                            }}
+                        />
                     </div>
                     <div className='product-information'>
                         <h1 className='nome-produto'>{produto.titulo}</h1>
                         <p className='desc-produto'>{produto.descricao}</p>
                         <div className='info-locador'>
-                            <span className='nome-locador'><img src="/img/user.svg" alt="Foto de perfil" />Joao</span>
+                            <span className='nome-locador'><img src="/img/user.svg" alt="Foto de perfil" />{produto.usuario_nome || "Usuário"}</span>
                             <span className='localizacao-locador'><img src="/img/local-black.svg" alt="Localização" />{produto.cidade}, {produto.bairro}, {produto.rua}</span>
                         </div>
                         <h1 className='preco-produto'>R$ {produto.preco_diaria}</h1>

@@ -16,8 +16,11 @@ export default function ProductCard({ product }) {
       <div className="product-image-container">
         <img
           className="product-image"
-          src= {`./img/${product.imagem}`}
+          src={product.imagem ? `/img/${product.imagem}` : "/img/produto.png"}
           alt={product.titulo}
+          onError={(e) => {
+            e.target.src = "/img/produto.png";
+          }}
         />
       </div>
 

@@ -1,33 +1,37 @@
-.controleFinanceiro-container {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--cor-cinza-claro);
-  height: 100vh;
-  width: 100%;
-  gap: 5px;
+.controleFinanceiro-container{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor-cinza-claro);
+    min-height: 100%;
+    width: 100%;
+    gap: 5px;
 
+    background-color: var(--cor-cinza-claro);
+  
 }
 
-.titulo-controleFinaceiro {
-  display: flex;
-  justify-content: center;
+.titulo-controleFinaceiro{
+    display: flex;
+    justify-content: center;
   border-bottom: 1px solid black;
-
-  width: 100%;
+  
+    width: 100%;
 }
 
 
-.transacoes-controleFinanceiro {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 10px;
-  background-color: var(--cor-branco);
-  width: 95%;
-  height: 95vh;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.762);
+.transacoes-controleFinanceiro{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius:10px ;
+    background-color: var(--cor-branco);
+    width: 95%;
+    height: 97%;
+    box-shadow:0px 4px 8px rgba(0, 0, 0, 0.762);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 
 }
 
@@ -37,9 +41,47 @@
   margin-top: 20px;
 }
 
-.informacoes-controleFinanceiro {
+.informacoes-controleFinanceiro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.extrato-footer {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  width: 95%;
+  padding: 12px 15px;
+  border-top: 1px solid #ccc;
+  box-shadow: 0px -2px 6px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  border-radius: 8px;
+}
+
+.totais-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.box-total {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px;
+  background: #f4f4f4;
+  border-radius: 6px;
+}
+
+.extrato-footer .filtros {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  gap: 10px;
 }

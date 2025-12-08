@@ -85,7 +85,7 @@ function InfoCep() {
             if (e.target === e.currentTarget) setShowModal(false);
           }}
         >
-          <div className="modal-container">
+          <div className="modal-cont">
             <button className="fechar" onClick={() => setShowModal(false)}>
               &times;
             </button>
