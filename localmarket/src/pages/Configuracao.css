@@ -26,7 +26,7 @@
 .input-form{
     width: 70%;
 }
-.button-location{
+.button-confirm{
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, var(--cor-azul-pastel), var(--cor-azul-marinho));
@@ -47,7 +47,7 @@
     margin: 30px;
 }
 
-.button-location::before {
+.button-confirm::before {
     content: '';
     position: absolute;
     top: 0;
@@ -58,17 +58,17 @@
     transition: left 0.5s;
   }
   
-  .button-location:hover {
+  .button-confirm:hover {
     background: linear-gradient(135deg, var(--cor-azul-marinho) 60%, var(--cor-preto) 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(36, 58, 105, 0.4);
   }
   
-  .button-location:hover::before {
+  .button-confirm:hover::before {
     left: 100%;
   }
   
-  .button-location:active {
+  .button-confirm:active {
     transform: translateY(0);
     box-shadow: 0 4px 15px rgba(36, 58, 105, 0.3);
   }

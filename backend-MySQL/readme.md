@@ -52,11 +52,11 @@ SELECT * FROM item;
 INSERT INTO item
 (titulo, descricao, categoria, preco_diaria, cidade, rua, bairro, estado, cep, telefone, imagem, usuario_id)
 VALUES
-('Gol 1.6 Completo','Carro popular, econômico e confortável, ideal para viagens curtas e longas.' ,'Veículos','150.00 ','Campinas','Rua das Acácias, 120','Jardim das Flores' ,'SP','04567210','11998764532','produto.png', 1),
-('Furadeira Bosch 600W', 'Furadeira potente para uso doméstico e profissional, com ajuste de velocidade.', 'Ferramentas', 35.00, 'São José', 'Rua Pedro Álvares, 45', 'Centro', 'RJ', '22045380', '21987652345','user.png', 2),
-('Fantasia de Super-Herói Infantil', 'Fantasia completa com capa e máscara, tamanhos de 4 a 8 anos.', 'Vestimentas', 20.00, 'Belo Horizonte', 'Rua São Bento, 300', 'Vila Nova', 'MG', '30190120', '31996547723','star.png', 3),
-('Brinquedoteca Móvel', 'Espaço kids inflável com escorregador e piscina de bolinhas, ideal para festas.', 'Espaço kids', 180.00,  'Palhoça', 'Rua dos Ipês, 77', 'Parque das Árvores', 'PR', '81540200', '41999018899','home.png', 4),
-('Salão Golden Fest', 'Salão de festa climatizado com capacidade para 200 pessoas, inclui mesas e cadeiras.', 'Salão de festa', 850.00, 'Angelina', 'Avenida Central, 999', 'Jardim América', 'RS', '90120000', '51998001122','contact.svg', 5);
+('Gol 1.6 Completo','Carro popular, econômico e confortável, ideal para viagens curtas e longas.' ,'Veículos','150.00 ','Campinas','Rua das Acácias, 120','Jardim das Flores' ,'SP','04567210','11998764532','gol.jpg', 1),
+('Furadeira Bosch 600W', 'Furadeira potente para uso doméstico e profissional, com ajuste de velocidade.', 'Ferramentas', 35.00, 'São José', 'Rua Pedro Álvares, 45', 'Centro', 'RJ', '22045380', '21987652345','furadeira.jpg', 2),
+('Fantasia de Super-Herói Infantil', 'Fantasia completa com capa e máscara, tamanhos de 4 a 8 anos.', 'Vestimentas', 20.00, 'Belo Horizonte', 'Rua São Bento, 300', 'Vila Nova', 'MG', '30190120', '31996547723','fantasia.png', 3),
+('Brinquedoteca Móvel', 'Espaço kids inflável com escorregador e piscina de bolinhas, ideal para festas.', 'Espaço kids', 180.00,  'Palhoça', 'Rua dos Ipês, 77', 'Parque das Árvores', 'PR', '81540200', '41999018899','briquedoteca.jpg', 4),
+('Salão Golden Fest', 'Salão de festa climatizado com capacidade para 200 pessoas, inclui mesas e cadeiras.', 'Salão de festa', 850.00, 'Angelina', 'Avenida Central, 999', 'Jardim América', 'RS', '90120000', '51998001122','salao.jpeg', 5);
 
 CREATE TABLE aluguel(
 id_aluguel INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -117,8 +117,6 @@ VALUES
 (3, 'Fantasia bonita, mas o tamanho veio um pouco diferente.', '2025-11-15', 3),   -- Fantasia Infantil
 (5, 'As crianças adoraram! Equipamento seguro e bem conservado.', '2025-11-19', 4),-- Brinquedoteca Móvel
 (4, 'Salão espaçoso e organizado, mas o ar-condicionado falhou no final.', '2025-11-24', 5); -- Salão Golden Fest
-
-
 
 
 DROP DATABASE local_market
