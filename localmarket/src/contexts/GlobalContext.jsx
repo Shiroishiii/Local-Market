@@ -28,18 +28,18 @@ export const GlobalContextProvider = ({ children }) => {
   })
 
   const [usuarioLogado, setUsuarioLogado] = useState({
-    id_usuario: 6,
-    nome: "Maria",
-    email: "Maria@gmail.com",
-    senha: "1",
+    id_usuario: null,
+    nome: "",
+    email: "",
+    senha: "",
     cidade: null,
     rua: null,
     bairro: null,
     estado: null,
     cep: null,
-    cpf: 1367829182,
+    cpf: '',
     cnpj: null,
-    telefone: 999903456713,
+    telefone: '',
     tipo: null
   });
   useEffect(() => {

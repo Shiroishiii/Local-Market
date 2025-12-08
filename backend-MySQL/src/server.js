@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+const db = require("./database");
+
 
 const app = express();
 const pool = mysql.createPool({
@@ -89,6 +91,39 @@ app.delete('/usuario/:id', async (req, res) => {
     }
 });
 
+
+
+
+
+//Foto DE PERFIL
+
+
+
+app.post('/usuario/salvar-imagem', (req, res) => {
+    console.log("BODY RECEBIDO:", req.body);
+
+    const { id_usuario, imagem } = req.body;
+
+    if (!id_usuario || !imagem) {
+        console.log("ERRO → id_usuario ou imagem vazio!");
+        return res.status(400).json({ error: "Dados incompletos" });
+    }
+
+    const sql = `
+        UPDATE usuario
+        SET imagem = ?
+        WHERE id_usuario = ?
+    `;
+
+    db.query(sql, [imagem, id_usuario], (err, result) => {
+        if (err) {
+            console.error("Erro ao salvar imagem:", err);
+            return res.status(500).json({ error: "Erro no servidor" });
+        }
+
+        return res.status(200).json({ message: "Imagem salva com sucesso!" });
+    });
+});
 
 
 //LOGIN
