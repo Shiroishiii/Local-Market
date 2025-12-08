@@ -28,10 +28,10 @@ export const GlobalContextProvider = ({ children }) => {
   })
 
   const [usuarioLogado, setUsuarioLogado] = useState({
-    id_usuario: null,
-    nome: "",
-    email: "",
-    senha: "",
+    id_usuario: 1,
+    nome: "Maria",
+    email: "Maria@gmail.com",
+    senha: "1",
     cidade: null,
     rua: null,
     bairro: null,

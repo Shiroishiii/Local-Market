@@ -7,6 +7,8 @@
     min-height: 100%;
     width: 100%;
     gap: 5px;
+
+    background-color: var(--cor-cinza-claro);
   
 }
 
@@ -45,4 +47,41 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 20px;
+}
+
+.extrato-footer {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  width: 95%;
+  padding: 12px 15px;
+  border-top: 1px solid #ccc;
+  box-shadow: 0px -2px 6px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  border-radius: 8px;
+}
+
+.totais-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.box-total {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px;
+  background: #f4f4f4;
+  border-radius: 6px;
+}
+
+.extrato-footer .filtros {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
