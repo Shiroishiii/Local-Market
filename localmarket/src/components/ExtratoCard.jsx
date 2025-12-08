@@ -3,7 +3,6 @@ import './ExtratoCard.css'
 
 function CardExtrato({ nome_item, rua_item, data_inicio, data_fim, valor_total }) {
 
-
   function formatarData(data) {
     return new Date(data).toLocaleDateString('pt-BR')
   }
@@ -11,18 +10,17 @@ function CardExtrato({ nome_item, rua_item, data_inicio, data_fim, valor_total }
   return (
     <div className="card-extrato">
 
-
       <div className="col-esquerda">
         <p className="nome">{nome_item}</p>
         <p className="local">{rua_item}</p>
       </div>
 
-
       <div className="col-meio">
-      <label htmlFor="">Inicio</label> 
-       <p className="data">{formatarData(data_inicio)}</p>
-      <label htmlFor="">Fim</label>
-       <p className="data">{formatarData(data_fim)}</p>
+        <label>Inicio</label>
+        <p className="data">{formatarData(data_inicio)}</p>
+
+        <label>Fim</label>
+        <p className="data">{formatarData(data_fim)}</p>
       </div>
 
       <div className="col-direita">

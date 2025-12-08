@@ -36,27 +36,6 @@ function Perfil() {
               d="M14 5l7 7m0 0l-7 7m7-7H3"
             ></path> */}
             </button> </Link>
-          <Link to={'/favoritos'} className='link-das-coisas'><button className='button-sidebar'><p>Favoritos</p>
-            {/* <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path> */}
-            </button></Link>
-          <Link to={'/ajuda'} className='link-das-coisas'><button className='button-sidebar'><p>Ajuda/Suporte</p>
-            {/* <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path> */}
-            </button></Link>
-          <Link to={'/configuracao'} className='link-das-coisas'><button className='button-sidebar'><p>Configuração</p>
-            {/* <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path> */}
-            </button></Link>
        <Link to="/login" className="link-das-coisas">
   <button className="button-logout">
     <p>Sair</p>
