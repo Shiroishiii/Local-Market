@@ -28,7 +28,7 @@ export const GlobalContextProvider = ({ children }) => {
   })
 
   const [usuarioLogado, setUsuarioLogado] = useState({
-    id_usuario: 6,
+    id_usuario: 1,
     nome: "Maria",
     email: "Maria@gmail.com",
     senha: "1",
