@@ -8,7 +8,7 @@
     width: 100%;
     gap: 5px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: var(--cor-cinza-claro);
+    min-height: 100vh;
   }
   
   .titulo-controleFinaceiro{
