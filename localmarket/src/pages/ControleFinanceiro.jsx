@@ -51,6 +51,8 @@ function ControleFinanceiro() {
                 nome_item={t.nome_item}
                 valor_total={Number(t.valor_total)}
                 data_inicio={t.data_inicio}
+                data_fim={t.data_fim}
+                rua_item={t.rua_item}
               />
             ))
           )}

@@ -12,6 +12,7 @@ function Navbar( {onSearchChange, onFilterChange}) {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedPrice, setSelectedPrice] = useState('all')
   const [selectedLocation, setSelectedLocation] = useState('all')
+  const {usuarioLogado} = useContext(GlobalContext)
 
 
 
