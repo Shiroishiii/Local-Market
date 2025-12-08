@@ -49,7 +49,7 @@ export default function Anunciar() {
             return;
         }
         
-        // const previews = files.map((file) => URL.createObjectURL(file));
+        // const preview = imagem.map((file) => URL.createObjectURL(file));
         // const previews =  URL.createObjectURL(files[0]);
         const previews =  files[0].name;
         setImagem(previews);
@@ -171,19 +171,19 @@ export default function Anunciar() {
 
                 <h2 className="pre-vizu-d">Pré-visualização</h2>
 
-                {/* <div className="preview-media">
-                    {imagens.length > 0 ? (
-                        <img src={imagens[0]} alt="preview" />
+                {/* { <div className="preview-media">
+                    {imagem.length > 0 ? (
+                        <img src={imagem[0]} alt="preview" />
                     ) : (
                         <div className="preview-placeholder">Nenhuma imagem selecionada</div>
                     )}
-                </div> */}
+                </div> } */}
 
-                {/* <div className="preview-thumbs">
-                    {imagens.map((img, i) => (
+                {/* {<div className="preview-thumbs">
+                    {imagem.map((img, i) => (
                         <img key={i} src={img} />
                     ))}
-                </div> */}
+                </div> } */}
 
                 <div className="preview-info">
                     <h3>{titulo || "Título do item"}</h3>
