@@ -25,19 +25,39 @@ function Body() {
 
         const productsWithUser = await Promise.all(
           data.map(async (product) => {
-            const resUser = await fetch(`http://localhost:3001/usuario/${product.usuario_id}`);
-            const usuario = await resUser.json();
-            return { ...product, usuario_nome: usuario.nome };
+            try {
+              if (product.usuario_id) {
+                const resUser = await fetch(`http://localhost:3001/usuario/${product.usuario_id}`);
+                if (resUser.ok) {
+                  const usuario = await resUser.json();
+                  return { ...product, usuario_nome: usuario.nome };
+                }
+              }
+              return { ...product, usuario_nome: "Usuário" };
+            } catch (err) {
+              console.error(`Erro ao buscar usuário para produto ${product.id_item}:`, err);
+              return { ...product, usuario_nome: "Usuário" };
+            }
           })
         );
 
         setAllProducts(productsWithUser);
       } catch (err) {
-        console.error(err);
+        console.error('Erro ao buscar produtos:', err);
       }
     };
 
     fetchProducts();
+    
+    // Recarregar produtos quando a página recebe foco (útil após criar novo anúncio)
+    const handleFocus = () => {
+      fetchProducts();
+    };
+    window.addEventListener('focus', handleFocus);
+    
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+    };
   }, []);
 
   const filteredProducts = useMemo(() => {

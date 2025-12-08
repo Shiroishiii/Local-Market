@@ -7,8 +7,11 @@ function CardProduct({ produto }) {
             <div className='image-product'>
                 <img
                     className="product-image"
-                    src={`./img/${produto.imagem}`}
+                    src={produto.imagem ? `/img/${produto.imagem}` : "/img/produto.png"}
                     alt={produto.titulo}
+                    onError={(e) => {
+                        e.target.src = "/img/produto.png";
+                    }}
                 />
             </div>
             <div className='info-product'>

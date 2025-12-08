@@ -14,16 +14,24 @@ function ControleFinanceiro() {
   async function buscarTransacoes() {
     try {
       const res = await fetch(`http://localhost:3001/aluguelporusuario/${usuarioLogado.id_usuario}`)
+      if (!res.ok) {
+        setTransacoes([])
+        return
+      }
       const data = await res.json()
-      setTransacoes(data || [])
+      // Garantir que data seja sempre um array
+      setTransacoes(Array.isArray(data) ? data : [])
     } catch (err) {
       console.log("Erro ao pegar dados do usuário:", err)
+      setTransacoes([])
     }
   }
 
   useEffect(() => {
-    buscarTransacoes()
-  }, [])
+    if (usuarioLogado?.id_usuario) {
+      buscarTransacoes()
+    }
+  }, [usuarioLogado?.id_usuario])
 
 
   function diasPassados(data) {
@@ -34,9 +42,13 @@ function ControleFinanceiro() {
   }
 
   function resumoPeriodo(lista, diasMax) {
+    // Garantir que lista seja um array
+    if (!Array.isArray(lista)) {
+      return { quantidade: 0, total: 0 }
+    }
     const filtrados = lista.filter(item => diasPassados(item.data_inicio) <= diasMax)
 
-    const total = filtrados.reduce((acc, item) => acc + Number(item.valor_total), 0)
+    const total = filtrados.reduce((acc, item) => acc + Number(item.valor_total || 0), 0)
 
     return {
       quantidade: filtrados.length,
@@ -50,6 +62,10 @@ function ControleFinanceiro() {
   const resumo5 = resumoPeriodo(transacoes, 150)
 
   function filtrar(lista) {
+    // Garantir que lista seja um array
+    if (!Array.isArray(lista)) {
+      return []
+    }
     if (filtro === "todos") return lista
 
     let dias = 0
@@ -60,7 +76,7 @@ function ControleFinanceiro() {
     return lista.filter(item => diasPassados(item.data_inicio) <= dias)
   }
 
-  const listaFiltrada = filtrar(transacoes)
+  const listaFiltrada = Array.isArray(transacoes) ? filtrar(transacoes) : []
 
   return (
     <div className='controleFinanceiro-container'>
