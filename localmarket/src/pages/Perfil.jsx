@@ -146,9 +146,9 @@ function Perfil() {
             <button className='button-sidebar'><p>Carrinho</p></button>
           </Link>
 
-          <Link to={'/configuracao'} className='link-das-coisas'>
+          {/* <Link to={'/configuracao'} className='link-das-coisas'>
             <button className='button-sidebar'><p>Configurações</p></button>
-          </Link>
+          </Link> */}
 
           <button className="button-logout" onClick={handleLogout}>
             <p>Sair</p>
@@ -197,7 +197,7 @@ function Perfil() {
             </label>
           </div>
 
-          <div className='outras-informacao'>
+          {/* <div className='outras-informacao'>
             <label>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style={{ marginRight: '8px', verticalAlign: 'middle' }}>
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
@@ -224,7 +224,7 @@ function Perfil() {
                 Nenhum endereço cadastrado
               </label>
             )}
-          </div>
+          </div> */}
         </div>
 
       </div>
