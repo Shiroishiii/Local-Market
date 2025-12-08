@@ -1,7 +1,7 @@
 .body-container{
     display: flex;
     flex-direction: column;
-    background-color: var(--cor-cinza-claro);
+    background-color: var(--cor-cinza-claro );
     min-height: 100vh;
     /* padding: 20px; */
 }

@@ -1,18 +1,36 @@
 import React from 'react'
 import './ExtratoCard.css'
-function CardExtrato({ descricao, valor, data }) {
+
+function CardExtrato({ nome_item, rua_item, data_inicio, data_fim, valor_total }) {
+
+  function formatarData(data) {
+    return new Date(data).toLocaleDateString('pt-BR')
+  }
+
   return (
     <div className="card-extrato">
-      <div>
-        <strong>{descricao}</strong>
-      </div>
-        <p>{data}</p>
 
-      <span className={valor < 0 ? 'negativo' : 'positivo'}>
-        R$ {valor.toFixed(2)}
-      </span>
+      <div className="col-esquerda">
+        <p className="nome">{nome_item}</p>
+        <p className="local">{rua_item}</p>
+      </div>
+
+      <div className="col-meio">
+        <label>Inicio</label>
+        <p className="data">{formatarData(data_inicio)}</p>
+
+        <label>Fim</label>
+        <p className="data">{formatarData(data_fim)}</p>
+      </div>
+
+      <div className="col-direita">
+        <p className={`valor ${valor_total < 0 ? 'negativo' : 'positivo'}`}>
+          R$ {valor_total.toFixed(2)}
+        </p>
+      </div>
+
     </div>
-  );
+  )
 }
 
-export default CardExtrato;
+export default CardExtrato

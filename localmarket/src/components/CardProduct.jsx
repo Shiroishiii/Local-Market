@@ -1,26 +1,40 @@
-import './CardProduct.css'
+import './CardProduct.css';
 
-function CardProduct() {
+function CardProduct({ produto }) {
+    console.log(produto)
     return (
         <div className='card-product'>
             <div className='image-product'>
-            <img className='img-card' src="./img/produto.png" alt="Avaliação" />
+                <img
+                    className="product-image"
+                    src={produto.imagem ? `/img/${produto.imagem}` : "/img/produto.png"}
+                    alt={produto.titulo}
+                    onError={(e) => {
+                        e.target.src = "/img/produto.png";
+                    }}
+                />
             </div>
             <div className='info-product'>
-                <h3 className='name-product'>Nome produto</h3>
-                <p className='description-product'>descricao: Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, dolorem? Excepturi eum perspiciatis veniam architecto recusandae quos debitis, ut laborum ad consequatur, labore omnis eaque culpa provident officiis! Earum, quisquam.</p>
+                <h3 className='name-product'>{produto.titulo}</h3>
+                <p className='description-product'>{produto.descricao}</p>
 
                 <div className='info-seller'>
-                    <span className='name-seller'><img src="./img/user.svg" alt="Foto de perfil" />Joao</span>
-                    <span className='location-seller'><img src="./img/local-black.svg" alt="Localização" />Rua foda amno</span>
+                    <span className='name-seller'>
+                        <img src="/img/user.svg" alt="Foto de perfil" />
+                        {produto.usuario_nome || "Usuário"}
+                    </span>
+                    <span className='location-seller'>
+                        <img src="/img/local-black.svg" alt="Localização" />
+                        {produto.rua}, {produto.bairro} - {produto.cidade}
+                    </span>
                 </div>
 
                 <div className='footer-product'>
-                    <span className='price-product'>R$ 30/dia</span>
+                    <span className='price-product'>R$ {produto.preco_diaria}</span>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default CardProduct
+export default CardProduct;
