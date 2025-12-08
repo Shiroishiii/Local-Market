@@ -37,9 +37,9 @@ export const GlobalContextProvider = ({ children }) => {
     bairro: null,
     estado: null,
     cep: null,
-    cpf: 1367829182,
+    cpf: '',
     cnpj: null,
-    telefone: 999903456713,
+    telefone: '',
     tipo: null
   });
   useEffect(() => {
